@@ -15,7 +15,7 @@ spec:
     - ref: values
       targetRevision: HEAD
       repoURL: 'https://github.com/WGBH-MLA/cluster-deploy.git'
-    - path: traefik/ssl-pv.yml
+    - path: traefik/certs
       targetRevision: HEAD
       repoURL: 'https://github.com/WGBH-MLA/cluster-deploy.git'
 
