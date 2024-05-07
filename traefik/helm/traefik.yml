@@ -11,7 +11,7 @@ spec:
       targetRevision: 28.0.0
       helm:
         valueFiles:
-          - traefik/values.yml
+          - values.yml
     - path: traefik/ssl-pv.yml
       targetRevision: HEAD
       repoURL: 'https://github.com/WGBH-MLA/cluster-deploy.git'
