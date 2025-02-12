@@ -13,10 +13,10 @@ spec:
         valueFiles:
           - $values/traefik/values.yml
     - ref: values
-      targetRevision: HEAD
+      targetRevision: demo
       repoURL: 'https://github.com/WGBH-MLA/cluster-deploy.git'
     - path: traefik/certs
-      targetRevision: HEAD
+      targetRevision: demo
       repoURL: 'https://github.com/WGBH-MLA/cluster-deploy.git'
 
   destination:
