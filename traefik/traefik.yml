@@ -11,13 +11,13 @@ spec:
       targetRevision: 34.3.0
       helm:
         valueFiles:
-          - $values/traefik/values.yml
+          - $values/traefik/helm/values.yml
     - ref: values
-      targetRevision: demo
       repoURL: 'https://github.com/WGBH-MLA/cluster-deploy.git'
+      targetRevision: demo
     - path: traefik/certs
-      targetRevision: demo
       repoURL: 'https://github.com/WGBH-MLA/cluster-deploy.git'
+      targetRevision: demo
 
   destination:
     server: 'https://kubernetes.default.svc'
