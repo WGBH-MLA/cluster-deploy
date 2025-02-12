@@ -25,13 +25,17 @@ logs:
     #   headers:
     #     defaultmode: keep
 
-ports:
+entryPoints:
   web:
-    # Permanent Redirect to HTTPS
-    redirectTo:
-      port: websecure
+    address: :80
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
 
   websecure:
+    address: :443
     tls:
       enabled: true
       # Set a Default CertResolver
