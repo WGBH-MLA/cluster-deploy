@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: traefik-demo
-  # namespace: argo-cd
+  namespace: argo-cd
 spec:
   project: default
   sources:
@@ -19,6 +19,6 @@ spec:
       repoURL: 'https://github.com/WGBH-MLA/cluster-deploy.git'
       targetRevision: demo
 
-  # destination:
-  #   server: 'https://kubernetes.default.svc'
-  #   namespace: traefik-demo
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: traefik-demo
