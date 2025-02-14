@@ -1,0 +1,20 @@
+container_runtime: containerd
+agent:
+  acquisition:
+    - namespace: traefik
+      podName: traefik-*
+      program: traefik
+  env:
+    - name: COLLECTIONS
+      value: "crowdsecurity/traefik"
+lapi:
+  env:
+    # To enroll the Security Engine to the console
+    - name: ENROLL_KEY
+      value: cm70temjn0007gzrcmnw27dob
+    - name: ENROLL_INSTANCE_NAME
+      value: CLAMS-cluster
+    - name: ENROLL_TAGS
+      value: k8s linux test CLAMS
+    - name: BOUNCER_KEY_traefik
+      value: hs1qdtPugTMvwVtYuB+0Yg==

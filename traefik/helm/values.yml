@@ -19,7 +19,7 @@ logs:
   access:
     enabled: true
     format: json
-    # filePath: /var/log/access.log
+    filePath: /var/log/access.log
     # bufferingSize: 10
     # fields:
     #   headers:
