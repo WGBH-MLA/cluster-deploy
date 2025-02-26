@@ -1,10 +1,16 @@
 USER-SUPPLIED VALUES:
-additionalArguments:
-- --log.filepath=/var/log/traefik/traefik.log
-- --accesslog.filepath=/var/log/traefik/access.log
+# additionalArguments:
+# - --log.filepath=/var/log/traefik/traefik.log
+# - --accesslog.filepath=/var/log/traefik/access.log
 # - --entrypoints.web.http.middlewares=traefik-bouncer@kubernetescrd
 # - --entrypoints.websecure.http.middlewares=traefik-bouncer@kubernetescrd
 # - --entrypoints.websecure.http.middlewares=traefik-captcha-protect@kubernetescrd
+
+deployment:
+  podAnnotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/path: /metrics
+    prometheus.io/port: '9100'
 
 certificatesResolvers:
   staging:
@@ -79,10 +85,19 @@ securityContext:
   runAsNonRoot: false
 
 metrics:
+  addInternals: true
   prometheus:
-    addEntryPointsLabels: true
     addRoutersLabels: true
-    addServicesLabels: true
+    headerLabels:
+      # host: X-Forwarded-Host
+      # host: ClientHost
+      useragent: request_User-Agent
+      ip: request_X-Real-Ip
+  otlp:
+    enabled: true
+    endpoint: loki-gateway.loki/loki/api/v1/push
+    headers:
+      X-Scope-OrgID: traefik
 
 experimental:
   plugins:
