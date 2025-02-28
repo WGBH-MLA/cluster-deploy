@@ -1,12 +1,25 @@
 container_runtime: containerd
+podAnnotations:
+  prometheus.io/scrape: 'true'
+  prometheus.io/path: /metrics
+  prometheus.io/port: '6060'
+
 agent:
   acquisition:
     - namespace: traefik
       podName: traefik-*
       program: traefik
+      # poll_without_inotify: true
+    - namespace: traefik-demo
+      podName: traefik-*
+      program: traefik
+      # poll_without_inotify: true
   env:
     - name: COLLECTIONS
-      value: "crowdsecurity/traefik"
+      value: crowdsecurity/traefik 
+  persistentVolume:
+    config:
+      enabled: false
 lapi:
   env:
     # To enroll the Security Engine to the console
@@ -16,5 +29,37 @@ lapi:
       value: CLAMS-cluster
     - name: ENROLL_TAGS
       value: k8s linux test CLAMS
-    - name: BOUNCER_KEY_traefik
-      value: hs1qdtPugTMvwVtYuB+0Yg==
+    - name: BOUNCER_KEY_bouncer
+      value: yWGoPQeiq2/GgoLGNFCRtJrt6HYTYrPJD6/ofnu07kw
+  persistentVolume:
+    data:
+      enabled: true
+      accessModes:
+        - ReadWriteMany
+      storageClassName: efs-sc
+    config:
+      enabled: true
+      accessModes:
+        - ReadWriteMany
+      storageClassName: efs-sc
+# appsec:
+#   enabled: true
+#   configs:
+#     gbh-whitelist.yaml: |
+#       name: crowdsecurity/gbh-whitelist
+#       description: "Whitelist events from GBH/LOC addresses"
+#       filter: "1 == 1"
+#       whitelist:
+#         reason: "GBH/LOC whitelist"
+#         ip: 
+#           - "127.0.0.1"
+#           - "156.47.80.192" # Harpo
+#         cidr:
+#           - "192.168.0.0/16"
+#           - "10.0.0.0/8"
+#           - "198.147.175.0/24" # GBH onsite
+#           - "204.152.12.0/23" # GBH onsite
+  # env:
+  #   - name: COLLECTIONS
+  #     value: crowdsecurity/gbh-whitelist
+  

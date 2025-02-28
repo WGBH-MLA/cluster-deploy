@@ -7,7 +7,10 @@ spec:
   plugin:
     bouncer:
       enabled: true
-      crowdsecMode: stream
-      crowdsecLapiScheme: https
+      # crowdsecMode: live
+      # crowdsecMode: stream
+      crowdsecMode: none
+      # crowdsecMode: appsec
+      crowdsecLapiScheme: http
       crowdsecLapiHost: crowdsec-service.crowdsec:8080
-      crowdsecLapiKey: hs1qdtPugTMvwVtYuB+0Yg==
+      crowdsecLapiKey: yWGoPQeiq2/GgoLGNFCRtJrt6HYTYrPJD6/ofnu07kw

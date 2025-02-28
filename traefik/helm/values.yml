@@ -1,6 +1,6 @@
 USER-SUPPLIED VALUES:
-# additionalArguments:
-# - --log.filepath=/var/log/traefik/traefik.log
+additionalArguments:
+- --log.filepath=/var/log/traefik/traefik.log
 # - --accesslog.filepath=/var/log/traefik/access.log
 # - --entrypoints.web.http.middlewares=traefik-bouncer@kubernetescrd
 # - --entrypoints.websecure.http.middlewares=traefik-bouncer@kubernetescrd
@@ -38,7 +38,7 @@ ingressRoute:
 logs:
   access:
     enabled: true
-    format: json
+    # format: json
     # filePath: /var/log/access.log
     fields:
       headers:
@@ -68,8 +68,8 @@ ports:
     tls:
       certResolver: production
       enabled: true
-    middlewares:
-      - traefik-bouncer@kubernetescrd
+    # middlewares:
+    #   - traefik-bouncer@kubernetescrd
       # - traefik-captcha-protect@kubernetescrd
   
 service:
