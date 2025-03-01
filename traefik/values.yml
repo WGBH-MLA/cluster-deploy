@@ -56,7 +56,9 @@ metrics:
 persistence:
   enabled: true
   accessMode: ReadWriteMany
-  storageClass: efs-sc
+  # storageClass: efs-sc
+  existingClaim: ssl-certs
+  path: /ssl-certs
 ports:
   web:
     redirections:
