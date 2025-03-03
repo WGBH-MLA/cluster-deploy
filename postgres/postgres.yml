@@ -25,9 +25,9 @@ spec:
                 name: postgres-secret
           volumeMounts:
             - mountPath: /var/lib/psql/data
-              subPath: ov
+              subPath: pg
               name: postgredb
-              
+
           resources:
             limits:
               cpu: '2'
@@ -39,4 +39,4 @@ spec:
       volumes:
         - name: postgredb
           persistentVolumeClaim:
-            claimName: postgres-ov-efs-claim
+            claimName: postgres-efs-claim
