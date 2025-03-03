@@ -1,82 +1,95 @@
 additionalArguments:
-  # Staging:
-  - --certificatesresolvers.staging.acme.email=ryan_harbert@wgbh.org
-  - --certificatesresolvers.staging.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory
-  # - --certificatesresolvers.staging.acme.httpChallenge.entryPoint=web
-  - --certificatesresolvers.staging.acme.storage=/ssl-certs/acme-staging.json
-  - --certificatesresolvers.staging.acme.tlschallenge=true
-
-  # Production
-  - --certificatesresolvers.production.acme.email=ryan_harbert@wgbh.org
-  - --certificatesresolvers.production.acme.caServer=https://acme-v02.api.letsencrypt.org/directory
-  # - --certificatesresolvers.production.acme.httpChallenge.entryPoint=web
-  - --certificatesresolvers.production.acme.storage=/ssl-certs/acme-production.json
-  - --certificatesresolvers.production.acme.tlschallenge=true
-
-logs:
-  general:
-    level: ERROR
-  access:
-    enabled: true
-    format: json
-    # filePath: /var/log/access.log
-    # bufferingSize: 10
-    # fields:
-    #   headers:
-    #     defaultmode: keep
-
-ports:
-  web:
-    # Permanent Redirect to HTTPS
-    redirectTo:
-      port: websecure
-
-  websecure:
-    tls:
-      enabled: true
-      # Set a Default CertResolver
-      certResolver: production
-    forwardedHeaders:
-      # Trust forwared headers from the CLAMS subnet
-      trustedIPs:
-        - '10.0.32.0/24'
-    proxyProtocol:
-      # TODO: How to get the actual loadbalancer IP?
-      trustedIPs:
-        - '10.0.0.0/16'
-
-env:
-# Disable Dashboard
-ingressRoute:
-  dashboard:
-    enabled: false
-
-# Persistent Storage
-persistence:
-  enabled: true
-  existingClaim: ssl-certs
-  path: /ssl-certs
-
-# deployment:
-#   initContainers:
-#     # The "volume-permissions" init container is required if you run into permission issues.
-#     # Related issue: https://github.com/containous/traefik/issues/6972
-#     - name: volume-permissions
-#       image: busybox:1.31.1
-#       command: ['sh', '-c', 'chmod -Rv 600 /ssl-certs/*']
-#       volumeMounts:
-#         - name: ssl-certs
-#           mountPath: /ssl-certs
-
-# Set Traefik as your default Ingress Controller, according to Kubernetes 1.19+ changes.
+- --log.filepath=/var/log/traefik/traefik.log
+certificatesResolvers:
+  production:
+    acme:
+      caServer: https://acme-v02.api.letsencrypt.org/directory
+      email: ryan_harbert@wgbh.org
+      storage: /ssl-certs/acme-production.json
+      tlsChallenge: true
+  staging:
+    acme:
+      caServer: https://acme-staging-v02.api.letsencrypt.org/directory
+      email: ryan_harbert@wgbh.org
+      storage: /ssl-certs/acme-staging.json
+      tlsChallenge: true
+deployment:
+  podAnnotations:
+    prometheus.io/path: /metrics
+    prometheus.io/port: '9100'
+    prometheus.io/scrape: 'true'
+env: null
+experimental:
+  plugins:
+    bouncer:
+      moduleName: github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin
+      version: v1.4.1
+    captcha-protect:
+      moduleName: github.com/libops/captcha-protect
+      version: v1.0.0
 ingressClass:
   enabled: true
   isDefaultClass: true
-
+ingressRoute:
+  dashboard:
+    enabled: true
+logs:
+  access:
+    enabled: true
+    fields:
+      headers:
+        defaultmode: keep
+  general:
+    level: DEBUG
+metrics:
+  addInternals: true
+  otlp:
+    enabled: true
+    endpoint: loki-gateway.loki/loki/api/v1/push
+    headers:
+      X-Scope-OrgID: traefik
+  prometheus:
+    addRoutersLabels: true
+    headerLabels:
+      ip: request_X-Real-Ip
+      useragent: request_User-Agent
+persistence:
+  enabled: true
+  accessMode: ReadWriteMany
+  # storageClass: efs-sc
+  existingClaim: ssl-certs
+  path: /ssl-certs
+ports:
+  web:
+    redirections:
+      entryPoint:
+        permanent: true
+        scheme: https
+        to: websecure
+  websecure:
+    forwardedHeaders:
+      trustedIPs:
+      - 10.0.32.0/24
+    proxyProtocol:
+      trustedIPs:
+      - 10.0.0.0/20
+    tls:
+      certResolver: production
+      enabled: true
+providers:
+  kubernetesCRD:
+    allowExternalNameServices: true
+    enabled: true
+  kubernetesIngress:
+    allowExternalNameServices: true
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsGroup: 0
+  runAsNonRoot: false
+  runAsUser: 0
 service:
-  spec:
-    # Set the externalTrafficPolicy to Local to preserve the client source IP
-    externalTrafficPolicy: Local
   annotations:
-    # Enable Proxy Protocol for AWS Load Balancer
     service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
+    # service.beta.kubernetes.io/aws-load-balancer-type: nlb
+  spec:
+    externalTrafficPolicy: Local
