@@ -5,3 +5,7 @@ influxdb2:
     storageClass: efs-sc
     accessModes:
       - ReadWriteMany
+  securityContext:
+    enabled: true
+    fsGroup: 1000
+    runAsUser: 1000
