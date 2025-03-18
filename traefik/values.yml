@@ -53,6 +53,12 @@ metrics:
     headerLabels:
       ip: request_X-Real-Ip
       useragent: request_User-Agent
+  influxDB2:
+    address: http://influxdb-influxdb2.influxdb
+    token: influxdb-secret
+    org: influxdata
+    bucket: traefik
+
 persistence:
   enabled: true
   accessMode: ReadWriteMany
