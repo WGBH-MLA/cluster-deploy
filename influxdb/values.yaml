@@ -1,0 +1,7 @@
+influxdb2:
+  persistence:
+    enabled: true
+    size: 1Gi
+    storageClass: efs-sc
+    accessModes:
+      - ReadWriteMany
