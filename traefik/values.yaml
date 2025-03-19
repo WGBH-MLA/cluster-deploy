@@ -47,11 +47,11 @@ traefik:
 
   ports:
     web:
-      # redirections:
-      #   entryPoint:
-      #     permanent: true
-      #     scheme: https
-      #     to: websecure
+      redirections:
+        entryPoint:
+          permanent: true
+          scheme: https
+          to: websecure
     websecure:
       forwardedHeaders:
         trustedIPs:
