@@ -1,12 +1,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: whoami-tls-staging
-  namespace: traefik
+  name: whoami-tls-production
+  namespace: whoami
 spec:
-  secretName: tls-whoami-staging
+  secretName: tls-whoami-production
   dnsNames:
-    - whoami.wgbh-mla.org
+    - w.wgbh-mla.org
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt-production
     kind: ClusterIssuer
