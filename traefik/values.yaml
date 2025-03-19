@@ -52,23 +52,31 @@ traefik:
     web:
       forwardedHeaders:
         trustedIPs:
-        - 10.0.0.0/18
+        - 10.0.0.0/19
+        - 10.0.32.0/24
+        - 10.0.128.0/19
       proxyProtocol:
         trustedIPs:
-        - 10.0.0.0/18
-      # redirections:
-      #   entryPoint:
-      #     permanent: true
-      #     scheme: https
-      #     to: websecure
+        - 10.0.0.0/19
+        - 10.0.32.0/24
+        - 10.0.128.0/19
+      redirections:
+        entryPoint:
+          permanent: true
+          scheme: https
+          to: websecure
     websecure:
       allowACMEByPass: true
       forwardedHeaders:
         trustedIPs:
-        - 10.0.0.0/18
+          - 10.0.0.0/19
+          - 10.0.32.0/24
+          - 10.0.128.0/19
       proxyProtocol:
         trustedIPs:
-        - 10.0.0.0/18
+          - 10.0.0.0/19
+          - 10.0.32.0/24
+          - 10.0.128.0/19
   providers:
     kubernetesCRD:
       allowExternalNameServices: true
