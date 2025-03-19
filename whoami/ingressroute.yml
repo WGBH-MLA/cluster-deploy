@@ -3,8 +3,6 @@ kind: IngressRoute
 metadata:
   name: whoami-ingress
   namespace: whoami
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
   routes:
     - kind: Rule

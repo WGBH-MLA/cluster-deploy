@@ -55,10 +55,10 @@ traefik:
     websecure:
       forwardedHeaders:
         trustedIPs:
-        - 10.0.0.0/20
+        - 10.0.0.0/18
       proxyProtocol:
         trustedIPs:
-        - 10.0.0.0/20
+        - 10.0.0.0/18
   providers:
     kubernetesCRD:
       allowExternalNameServices: true
