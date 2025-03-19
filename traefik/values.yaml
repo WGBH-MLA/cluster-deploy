@@ -1,18 +1,6 @@
 additionalArguments:
 - --log.filepath=/var/log/traefik/traefik.log
-certificatesResolvers:
-  production:
-    acme:
-      caServer: https://acme-v02.api.letsencrypt.org/directory
-      email: ryan_harbert@wgbh.org
-      storage: /ssl-certs/acme-production.json
-      tlsChallenge: true
-  staging:
-    acme:
-      caServer: https://acme-staging-v02.api.letsencrypt.org/directory
-      email: ryan_harbert@wgbh.org
-      storage: /ssl-certs/acme-staging.json
-      tlsChallenge: true
+
 deployment:
   podAnnotations:
     prometheus.io/path: /metrics
@@ -59,12 +47,6 @@ metrics:
     org: influxdata
     bucket: traefik
 
-persistence:
-  enabled: true
-  accessMode: ReadWriteMany
-  # storageClass: efs-sc
-  existingClaim: ssl-certs
-  path: /ssl-certs
 ports:
   web:
     redirections:
