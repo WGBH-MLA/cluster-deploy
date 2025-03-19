@@ -6,10 +6,10 @@ metadata:
 spec:
   routes:
     - kind: Rule
-      match: Host(`w.wgbh-mla.org`)
+      match: Host(`whoami.wgbh-mla.org`)
       services:
         - kind: Service
           name: whoami
           port: 80
   tls:
-    secretName: tls-whoami-production
+    secretName: whoami-tls-production

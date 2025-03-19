@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
- name: whoami
+ name: whoami-ingress-staging
  namespace: whoami
  annotations:
    cert-manager.io/cluster-issuer: letsencrypt-staging
@@ -9,10 +9,10 @@ spec:
   ingressClassName: traefik
   tls:
    - hosts:
-       - whoami.wgbh-mla.org
-     secretName: tls-whoami-staging
+       - who.wgbh-mla.org
+     secretName: whoami-tls-staging
   rules:
-   - host: whoami.wgbh-mla.org
+   - host: who.wgbh-mla.org
      http:
        paths:
          - path: /

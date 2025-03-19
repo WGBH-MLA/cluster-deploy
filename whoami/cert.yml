@@ -4,9 +4,9 @@ metadata:
   name: whoami-tls-production
   namespace: whoami
 spec:
-  secretName: tls-whoami-production
+  secretName: whoami-tls-production
   dnsNames:
-    - w.wgbh-mla.org
+    - whoami.wgbh-mla.org
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
