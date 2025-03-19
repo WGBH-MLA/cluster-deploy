@@ -9,6 +9,12 @@ spec:
       name: letsencrypt-staging
     server: https://acme-staging-v02.api.letsencrypt.org/directory
     solvers:
-    - http01:
-        ingress:
-          ingressClassName: traefik
+    - dns01:
+        route53:
+          region: us-east-1
+          accessKeyIDSecretRef:
+            name: route53-access-key
+            key: access-key
+          secretAccessKeySecretRef:
+            name: route53-access-key
+            key: secret-access-key
