@@ -29,29 +29,28 @@ traefik:
       level: DEBUG
   metrics:
     addInternals: true
-    otlp:
-      enabled: true
-      endpoint: loki-gateway.loki/loki/api/v1/push
-      headers:
-        X-Scope-OrgID: traefik
+    # otlp:
+    #   enabled: true
+    #   endpoint: loki-gateway.loki/loki/api/v1/push
+    #   headers:
+    #     X-Scope-OrgID: traefik
     prometheus:
       addRoutersLabels: true
       headerLabels:
         ip: request_X-Real-Ip
         useragent: request_User-Agent
-    influxDB2:
+    influxdb2:
       address: http://influxdb-influxdb2.influxdb:8086
       token: dnfjXI0xffDlnKSYJ5MjGrbn6KO0MkfVZ9gkKyUqTWpuydWzq6hzugwEsW59CuSB5o4v_Z7IqIoocKy7S_bN-A==
       org: influxdata
       bucket: traefik
+      additionalLabels:
+        service: traefik
+        env: production
 
   ports:
     web:
-      # redirections:
-      #   entryPoint:
-      #     permanent: true
-      #     scheme: https
-      #     to: websecure
+      allowACMEByPass: true
     websecure:
       forwardedHeaders:
         trustedIPs:
