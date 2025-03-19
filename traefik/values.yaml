@@ -50,8 +50,13 @@ traefik:
 
   ports:
     web:
-      allowACMEByPass: true
+      redirections:
+        entryPoint:
+          permanent: true
+          scheme: https
+          to: websecure
     websecure:
+      allowACMEByPass: true
       forwardedHeaders:
         trustedIPs:
         - 10.0.0.0/18
