@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: grafana-tls
+spec:
+  secretName: grafana-tls
+  dnsNames:
+    - grafana.wgbh-mla.org
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
