@@ -12,3 +12,7 @@ spec:
     - http01:
         ingress:
           class: traefik
+          ingressTemplate:
+            metadata:
+              annotations:
+                traefik.ingress.kubernetes.io/frontend-entry-points: web

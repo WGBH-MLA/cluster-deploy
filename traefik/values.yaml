@@ -40,8 +40,8 @@ traefik:
         ip: request_X-Real-Ip
         useragent: request_User-Agent
     influxDB2:
-      address: http://influxdb-influxdb2.influxdb
-      token: influxdb-secret
+      address: http://influxdb-influxdb2.influxdb:8086
+      token: dnfjXI0xffDlnKSYJ5MjGrbn6KO0MkfVZ9gkKyUqTWpuydWzq6hzugwEsW59CuSB5o4v_Z7IqIoocKy7S_bN-A==
       org: influxdata
       bucket: traefik
 
