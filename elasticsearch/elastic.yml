@@ -29,4 +29,4 @@ spec:
       selfSignedCertificate:
         disabled: true
       certificate:
-        secretName: elastic-certs
+        secretName: elasticsearch-tls

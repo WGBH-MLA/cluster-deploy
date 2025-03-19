@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging-http
+spec:
+  acme:
+    email: ryan_harbert@wgbh.org
+    privateKeySecretRef:
+      name: letsencrypt-staging-http
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    solvers:
+    - http01:
+        ingress:
+          ingressClassName: traefik
+          ingressTemplate:
+            metadata:
+              annotations:
+                traefik.ingress.kubernetes.io/frontend-entry-points: web

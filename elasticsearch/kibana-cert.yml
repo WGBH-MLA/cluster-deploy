@@ -1,12 +1,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: elasticsearch-tls
+  name: kibana-tls
   namespace: elastic
 spec:
-  secretName: elasticsearch-tls
+  secretName: kibana-tls
   dnsNames:
-    - elastic.wgbh-mla.org
+    - search.wgbh-mla.org
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
