@@ -1,5 +1,5 @@
-deploymentMode: SimpleScalable
 loki:
+  deploymentMode: SimpleScalable
   loki:
     schemaConfig:
       configs:
@@ -31,45 +31,45 @@ loki:
   #     endpoint: minio
   #     insecure: true
 
-backend:
-  replicas: 1
-  persistence:
-    storageClass: efs-sc
+  backend:
+    replicas: 1
+    persistence:
+      storageClass: efs-sc
 
-read:
-  replicas: 1
-  persistence:
-    storageClass: efs-sc
+  read:
+    replicas: 1
+    persistence:
+      storageClass: efs-sc
 
-write:
-  replicas: 1 # To ensure data durability with replication
-  persistence:
-    storageClass: efs-sc
-    accessModes:
-      - ReadWriteMany
+  write:
+    replicas: 1 # To ensure data durability with replication
+    persistence:
+      storageClass: efs-sc
+      accessModes:
+        - ReadWriteMany
 
-minio:
-  enabled: true
-  persistence:
-    storageClass: efs-sc
+  minio:
+    enabled: true
+    persistence:
+      storageClass: efs-sc
 
-singleBinary:
-  replicas: 0
-ingester:
-  replicas: 0
-querier:
-  replicas: 0
-queryFrontend:
-  replicas: 0
-queryScheduler:
-  replicas: 0
-distributor:
-  replicas: 0
-compactor:
-  replicas: 0
-indexGateway:
-  replicas: 0
-bloomCompactor:
-  replicas: 0
-bloomGateway:
-  replicas: 0
+  singleBinary:
+    replicas: 0
+  ingester:
+    replicas: 0
+  querier:
+    replicas: 0
+  queryFrontend:
+    replicas: 0
+  queryScheduler:
+    replicas: 0
+  distributor:
+    replicas: 0
+  compactor:
+    replicas: 0
+  indexGateway:
+    replicas: 0
+  bloomCompactor:
+    replicas: 0
+  bloomGateway:
+    replicas: 0
