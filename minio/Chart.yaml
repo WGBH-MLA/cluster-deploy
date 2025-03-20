@@ -3,6 +3,6 @@ name: minio
 version: 0.0.1
 description: MinIO object storage tenant
 dependencies:
-- name: tenant
-  repository: https://operator.min.io/
-  version: 7.0.0
+- name: minio
+  repository: oci://registry-1.docker.io/bitnamicharts
+  version: 15.0.7
