@@ -25,11 +25,11 @@ loki:
         chunks: loki-chunks
         ruler: loki-ruler
         admin: loki-admin
-  #   type: s3
-  #   s3:
-  #     bucketName: loki
-  #     endpoint: minio
-  #     insecure: true
+      type: s3
+      s3:
+        bucketName: loki
+        endpoint: minio.minio
+        insecure: true
 
   backend:
     replicas: 1
@@ -49,9 +49,7 @@ loki:
         - ReadWriteMany
 
   minio:
-    enabled: true
-    persistence:
-      storageClass: efs-sc
+    enabled: false
 
   singleBinary:
     replicas: 0
