@@ -1,9 +1,12 @@
 tenant:
   tenant:
     name: minio
+
     pools:
     - name: pool-0
-      servers: 2
+      servers: 1
+      volumesPerServer: 2
       storageClassName: efs-sc
+
     metrics:
       enabled: true
