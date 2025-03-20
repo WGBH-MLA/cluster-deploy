@@ -1,3 +1,5 @@
+deploymentMode: SimpleScalable
+loki:
   loki:
     schemaConfig:
       configs:
@@ -18,25 +20,56 @@
     limits_config:
       allow_structured_metadata: true
       volume_enabled: true
+    storage:
+      bucketNames:
+        chunks: loki-chunks
+        ruler: loki-ruler
+        admin: loki-admin
+  #   type: s3
+  #   s3:
+  #     bucketName: loki
+  #     endpoint: minio
+  #     insecure: true
 
-  deploymentMode: SimpleScalable
+backend:
+  replicas: 1
+  persistence:
+    storageClass: efs-sc
 
-  backend:
-    replicas: 1
-    persistence:
-      storageClass: efs-sc
-  read:
-    replicas: 1
-  write:
-    replicas: 1 # To ensure data durability with replication
-    persistence:
-      storageClass: efs-sc
-  # Enable minio for storage
-  minio:
-    enabled: true
-    persistence:
-      storageClass: efs-sc
+read:
+  replicas: 1
+  persistence:
+    storageClass: efs-sc
 
-  gateway:
-    service:
-      type: LoadBalancer
+write:
+  replicas: 1 # To ensure data durability with replication
+  persistence:
+    storageClass: efs-sc
+    accessModes:
+      - ReadWriteMany
+
+minio:
+  enabled: true
+  persistence:
+    storageClass: efs-sc
+
+singleBinary:
+  replicas: 0
+ingester:
+  replicas: 0
+querier:
+  replicas: 0
+queryFrontend:
+  replicas: 0
+queryScheduler:
+  replicas: 0
+distributor:
+  replicas: 0
+compactor:
+  replicas: 0
+indexGateway:
+  replicas: 0
+bloomCompactor:
+  replicas: 0
+bloomGateway:
+  replicas: 0
