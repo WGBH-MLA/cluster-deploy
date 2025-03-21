@@ -29,11 +29,6 @@ traefik:
       level: DEBUG
   metrics:
     addInternals: true
-    # otlp:
-    #   enabled: true
-    #   endpoint: loki-gateway.loki/loki/api/v1/push
-    #   headers:
-    #     X-Scope-OrgID: traefik
     prometheus:
       addRoutersLabels: true
       headerLabels:
@@ -48,6 +43,13 @@ traefik:
       additionalLabels:
         service: traefik
         env: production
+    otlp:
+      enabled: true
+      http:
+        enabled: true
+        endpoint: http://loki-gateway.loki/
+        headers:
+          X-Scope-OrgID: traefik
 
   ports:
     web:
