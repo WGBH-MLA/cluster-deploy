@@ -7,6 +7,7 @@ traefik:
       prometheus.io/path: /metrics
       prometheus.io/port: '9100'
       prometheus.io/scrape: 'true'
+      prometheus.io/collectionInterval: 5s
   env: null
   experimental:
     plugins:
@@ -54,6 +55,10 @@ traefik:
   tracing:
     addInternals: true
     serviceName: traefik
+    safeQueryParams:
+      - 'f[access_types][]'
+      - 'f[producing_organizations][]'
+      - 'q'
 
     otlp:
       enabled: true
