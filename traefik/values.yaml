@@ -17,6 +17,9 @@ traefik:
       captcha-protect:
         moduleName: github.com/libops/captcha-protect
         version: v1.0.0
+      simple-cache:
+        moduleName: github.com/traefik/plugin-simplecache
+        version: v0.2.1
   ingressRoute:
     dashboard:
       enabled: true
