@@ -43,13 +43,24 @@ traefik:
       additionalLabels:
         service: traefik
         env: production
+    # otlp:
+    #   enabled: true
+    #   addRoutersLabels: true
+    #   http:
+    #     enabled: true
+    #     endpoint: http://loki-gateway.loki/
+    #     headers:
+    #       X-Scope-OrgID: traefik
+  tracing:
+    addInternals: true
+    serviceName: traefik
+
     otlp:
       enabled: true
-      http:
+      grpc:
         enabled: true
-        endpoint: http://loki-gateway.loki/
-        headers:
-          X-Scope-OrgID: traefik
+        endpoint: tempo.tempo:4317
+        insecure: true
 
   ports:
     web:
