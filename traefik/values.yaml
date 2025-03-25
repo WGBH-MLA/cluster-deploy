@@ -59,9 +59,18 @@ traefik:
     addInternals: true
     serviceName: traefik
     safeQueryParams:
+      - 'q'
       - 'f[access_types][]'
       - 'f[producing_organizations][]'
-      - 'q'
+      - 'f[media_type][]'
+      - 'f[generes][]'
+      - 'f[topics][]'
+      - 'f[asset_type][]'
+      - 'f[contributing_organizations][]'
+      - 'f[producing_organizations][]'
+      - 'exact_or_range'
+      - 'after_date'
+      - 'before_date'
 
     otlp:
       enabled: true
