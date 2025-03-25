@@ -13,5 +13,3 @@ spec:
     tls:
       selfSignedCertificate:
         disabled: true
-      certificate:
-        secretName: kibana-tls
