@@ -1,3 +1,31 @@
-minio:
-  global:
-    defaultStorageClass: efs-sc
+tenant:
+  tenant:
+    name: minio
+    
+    certificate:
+      requestAutoCert: false
+    configuration:
+      name: minio-env-configuration
+    configSecret:
+      name: minio-env-configuration
+      existingSecret: true
+      accessKey: null
+      secretKey: null
+    env:
+    - name: MINIO_PROMETHEUS_URL
+      value: http://prometheus-server.prometheus
+    - name: MINIO_PROMETHEUS_AUTH_TYPE
+      value: public
+    metrics:
+      enabled: true
+    pools:
+    - name: pool-0
+      servers: 1
+      volumesPerServer: 2
+      storageClassName: efs-sc
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
+        fsGroupChangePolicy: OnRootMismatch
+        runAsNonRoot: false
