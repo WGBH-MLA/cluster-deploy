@@ -1,0 +1,14 @@
+server:
+  global:
+    scrape_interval: 15s
+    evaluation_interval: 15s
+  persistentVolume:
+    accessModes:
+      - ReadWriteMany
+    storageClass: efs-sc
+alertmanager:
+  enabled: false # disable until we gigure out why it is still using gp2 storageClass
+  # persistence:
+  #   accessModes:
+  #     - ReadWriteMany
+  #   storageClass: efs-sc
