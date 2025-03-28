@@ -1,0 +1,9 @@
+apiVersion: v2
+name: tempo
+description: Grafana Alloy log aggregation system
+version: 0.0.1
+appVersion: v1.7.4
+dependencies:
+- name: alloy
+  repository: https://grafana.github.io/helm-charts
+  version: 0.12.5
