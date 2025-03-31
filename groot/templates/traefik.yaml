@@ -5,16 +5,10 @@ metadata:
   namespace: argo-cd
 spec:
   project: default
-  sources:
-    - chart: traefik
-      repoURL: https://traefik.github.io/charts
-      targetRevision: 34.4.1
-      helm:
-        valueFiles:
-          - $values/traefik/values.yaml
-    - ref: values
-      targetRevision: dev
-      repoURL: https://github.com/WGBH-MLA/cluster-deploy.git
+  source:
+    path: traefik
+    repoURL: https://github.com/WGBH-MLA/cluster-deploy.git
+    targetRevision: dev
     
   destination:
     server: https://kubernetes.default.svc

@@ -1,7 +1,4 @@
 traefik:
-  additionalArguments:
-  - --log.filepath=/var/log/traefik/traefik.log
-
   deployment:
     podAnnotations:
       prometheus.io/path: /metrics
@@ -114,11 +111,11 @@ traefik:
       enabled: true
     kubernetesIngress:
       allowExternalNameServices: true
-  securityContext:
-    readOnlyRootFilesystem: false
-    runAsGroup: 0
-    runAsNonRoot: false
-    runAsUser: 0
+  # securityContext:
+  #   readOnlyRootFilesystem: false
+  #   runAsGroup: 0
+  #   runAsNonRoot: false
+  #   runAsUser: 0
   service:
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
