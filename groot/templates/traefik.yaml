@@ -13,7 +13,7 @@ spec:
         valueFiles:
           - $values/traefik/values.yaml
     - ref: values
-      targetRevision: HEAD
+      targetRevision: dev
       repoURL: https://github.com/WGBH-MLA/cluster-deploy.git
     
   destination:

@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/WGBH-MLA/cluster-deploy.git
     path: argo-cd
-    targetRevision: HEAD
+    targetRevision: dev
   destination:
     server: https://kubernetes.default.svc
     namespace: argo-cd
