@@ -106,7 +106,7 @@ traefik:
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
       service.beta.kubernetes.io/aws-load-balancer-type: nlb
-      service.beta.kubernetes.io/aws-load-balancer-eip-allocations: eipalloc-0fd135e19c4cfe39a
+      service.beta.kubernetes.io/aws-load-balancer-eip-allocations: eipalloc-0fd135e19c4cfe39a,eipalloc-07126f3cf0579d0e0
       service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
     spec:
       externalTrafficPolicy: Local
