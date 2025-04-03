@@ -1,0 +1,12 @@
+prometheus:
+  server:
+    global:
+      scrape_interval: 15s
+      evaluation_interval: 15s
+    persistentVolume:
+      accessModes:
+        - ReadWriteMany
+      storageClass: efs-sc
+  retention: 1y
+  alertmanager:
+    enabled: false
