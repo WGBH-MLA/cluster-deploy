@@ -8,5 +8,8 @@ prometheus:
         - ReadWriteMany
       storageClass: efs-sc
     retention: 1y
+    remoteWrite:
+    - url: http://mimir-nginx.mimir/api/v1/push
+
   alertmanager:
     enabled: false
