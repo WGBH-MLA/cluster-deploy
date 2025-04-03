@@ -7,6 +7,6 @@ prometheus:
       accessModes:
         - ReadWriteMany
       storageClass: efs-sc
-  retention: 1y
+    retention: 1y
   alertmanager:
     enabled: false
