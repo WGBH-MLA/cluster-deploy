@@ -9,10 +9,10 @@ spec:
   ingressClassName: traefik
   tls:
    - hosts:
-       - who.wgbh-mla.org
+       - whoami.dev.wgbh-mla.org
      secretName: whoami-tls-staging
   rules:
-   - host: who.wgbh-mla.org
+   - host: whoami.dev.wgbh-mla.org
      http:
        paths:
          - path: /
