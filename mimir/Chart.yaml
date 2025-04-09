@@ -1,0 +1,9 @@
+apiVersion: v2
+name: mimir
+version: 0.0.1
+description: Grafana Mimir long term storage for Prometheus
+appVersion: r336
+dependencies:
+- name: mimir-distributed
+  repository: https://grafana.github.io/helm-charts
+  version: 5.8.0-weekly.336

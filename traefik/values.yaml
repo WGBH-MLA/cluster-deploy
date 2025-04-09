@@ -5,15 +5,11 @@ traefik:
       prometheus.io/port: '9100'
       prometheus.io/scrape: 'true'
       prometheus.io/collectionInterval: 5s
-  env: null
   experimental:
     plugins:
-      # bouncer:
-      #   moduleName: github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin
-      #   version: v1.4.1
       captcha-protect:
         moduleName: github.com/libops/captcha-protect
-        version: v1.6.2
+        version: v1.8.1
       simple-cache:
         moduleName: github.com/traefik/plugin-simplecache
         version: v0.2.1
@@ -23,10 +19,12 @@ traefik:
   logs:
     access:
       enabled: true
+      format: json
       fields:
         headers:
           defaultmode: keep
     general:
+      format: json
       level: DEBUG
   metrics:
     addInternals: true
@@ -35,14 +33,15 @@ traefik:
       headerLabels:
         ip: request_X-Real-Ip
         useragent: request_User-Agent
-    # otlp:
-    #   enabled: true
-    #   addRoutersLabels: true
-    #   http:
-    #     enabled: true
-    #     endpoint: http://loki-gateway.loki/
-    #     headers:
-    #       X-Scope-OrgID: traefik
+    influxdb2:
+      address: http://influxdb-influxdb2.influxdb
+      token: dnfjXI0xffDlnKSYJ5MjGrbn6KO0MkfVZ9gkKyUqTWpuydWzq6hzugwEsW59CuSB5o4v_Z7IqIoocKy7S_bN-A==
+      org: 8c43d3e0ff53e883
+      bucket: traefik
+      addRoutersLabels: true
+      additionalLabels:
+        service: traefik
+        env: production
   tracing:
     addInternals: true
     serviceName: traefik
@@ -84,6 +83,7 @@ traefik:
       allowExternalNameServices: true
   service:
     annotations:
+      service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
       service.beta.kubernetes.io/aws-load-balancer-type: nlb
       service.beta.kubernetes.io/aws-load-balancer-eip-allocations: eipalloc-0fd135e19c4cfe39a,eipalloc-07126f3cf0579d0e0
       service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing

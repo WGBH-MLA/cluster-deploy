@@ -1,0 +1,15 @@
+prometheus:
+  server:
+    global:
+      scrape_interval: 15s
+      evaluation_interval: 15s
+    persistentVolume:
+      accessModes:
+        - ReadWriteMany
+      storageClass: efs-sc
+    retention: 1y
+    remoteWrite:
+    - url: http://mimir-nginx.mimir/api/v1/push
+
+  alertmanager:
+    enabled: false
