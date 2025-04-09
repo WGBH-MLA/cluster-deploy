@@ -1,22 +1,15 @@
 traefik:
-  additionalArguments:
-  - --log.filepath=/var/log/traefik/traefik.log
-
   deployment:
     podAnnotations:
       prometheus.io/path: /metrics
       prometheus.io/port: '9100'
       prometheus.io/scrape: 'true'
       prometheus.io/collectionInterval: 5s
-  env: null
   experimental:
     plugins:
-      # bouncer:
-      #   moduleName: github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin
-      #   version: v1.4.1
       captcha-protect:
         moduleName: github.com/libops/captcha-protect
-        version: v1.6.2
+        version: v1.8.1
       simple-cache:
         moduleName: github.com/traefik/plugin-simplecache
         version: v0.2.1
@@ -26,10 +19,12 @@ traefik:
   logs:
     access:
       enabled: true
+      format: json
       fields:
         headers:
           defaultmode: keep
     general:
+      format: json
       level: DEBUG
   metrics:
     addInternals: true
@@ -47,14 +42,6 @@ traefik:
       additionalLabels:
         service: traefik
         env: production
-    # otlp:
-    #   enabled: true
-    #   addRoutersLabels: true
-    #   http:
-    #     enabled: true
-    #     endpoint: http://loki-gateway.loki/
-    #     headers:
-    #       X-Scope-OrgID: traefik
   tracing:
     addInternals: true
     serviceName: traefik
@@ -122,6 +109,5 @@ traefik:
   service:
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
-      # service.beta.kubernetes.io/aws-load-balancer-type: nlb
     spec:
       externalTrafficPolicy: Local
