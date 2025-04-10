@@ -33,15 +33,6 @@ traefik:
       headerLabels:
         ip: request_X-Real-Ip
         useragent: request_User-Agent
-    influxdb2:
-      address: http://influxdb-influxdb2.influxdb
-      token: dnfjXI0xffDlnKSYJ5MjGrbn6KO0MkfVZ9gkKyUqTWpuydWzq6hzugwEsW59CuSB5o4v_Z7IqIoocKy7S_bN-A==
-      org: 8c43d3e0ff53e883
-      bucket: traefik
-      addRoutersLabels: true
-      additionalLabels:
-        service: traefik
-        env: production
   tracing:
     addInternals: true
     serviceName: traefik
@@ -84,8 +75,8 @@ traefik:
   service:
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
-      # service.beta.kubernetes.io/aws-load-balancer-type: nlb
-      # service.beta.kubernetes.io/aws-load-balancer-eip-allocations: eipalloc-0fd135e19c4cfe39a,eipalloc-07126f3cf0579d0e0
-      # service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+      service.beta.kubernetes.io/aws-load-balancer-type: nlb
+      service.beta.kubernetes.io/aws-load-balancer-eip-allocations: eipalloc-0af8f8c9d5d591956,eipalloc-04afcfdf2af535765
+      service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
     spec:
       externalTrafficPolicy: Local
