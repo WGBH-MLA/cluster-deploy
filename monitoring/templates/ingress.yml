@@ -1,22 +1,22 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: whoami-ingress
+  name: grafana-ingress
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
   tls:
   - hosts:
-    - whoami.dev.wgbh-mla.org
-    secretName: whoami-tls-production
+    - grafana.dev.wgbh-mla.org
+    secretName: grafana-tls-production
   rules:
-  - host: whoami.dev.wgbh-mla.org
+  - host: grafana.dev.wgbh-mla.org
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: whoami
+            name: grafana
             port:
-              name: web
+              number: 80
