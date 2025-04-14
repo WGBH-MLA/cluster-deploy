@@ -1,6 +1,9 @@
 grafana:
   persistence:
     enabled: true
+  initChownData:
+    enabled: false
+
 prometheus:
   server:
     global:
