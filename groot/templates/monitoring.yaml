@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring
+  namespace: argo-cd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/WGBH-MLA/cluster-deploy.git
+    path: monitoring
+    targetRevision: dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
