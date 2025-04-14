@@ -66,6 +66,12 @@ traefik:
           to: websecure
     websecure:
       allowACMEByPass: true
+      forwardedHeaders:
+        trustedIPs:
+          - 10.0.160.0/21
+      proxyProtocol:
+        trustedIPs:
+          - 10.0.160.0/21
   providers:
     kubernetesCRD:
       allowExternalNameServices: true
