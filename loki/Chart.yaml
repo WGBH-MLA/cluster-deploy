@@ -1,8 +1,9 @@
 apiVersion: v2
 name: loki
-version: 0.0.1
+version: 0.0.2
+appVersion: 3.4.2
 description: Log aggregation system
 dependencies:
 - name: loki
   repository: https://grafana.github.io/helm-charts
-  version: 6.28.0
+  version: 6.29.0
