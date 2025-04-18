@@ -25,7 +25,6 @@ traefik:
           defaultmode: keep
     general:
       format: json
-      level: DEBUG
   metrics:
     addInternals: true
     prometheus:
