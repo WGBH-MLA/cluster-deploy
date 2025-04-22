@@ -1,4 +1,6 @@
 grafana:
+  initChownData:
+    enabled: false
   ingress:
     enabled: true
     annotations:
