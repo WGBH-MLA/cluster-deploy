@@ -1,8 +1,16 @@
 grafana:
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-production
+    hosts:
+    - grafana.dev.wgbh-mla.org
+    tls:
+    - secretName: grafana-tls-production
+      hosts:
+      - grafana.dev.wgbh-mla.org
   persistence:
     enabled: true
-  initChownData:
-    enabled: false
 
 prometheus:
   server:

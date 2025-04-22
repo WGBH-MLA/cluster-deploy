@@ -9,7 +9,7 @@ traefik:
     plugins:
       captcha-protect:
         moduleName: github.com/libops/captcha-protect
-        version: v1.8.1
+        version: v1.8.2
       simple-cache:
         moduleName: github.com/traefik/plugin-simplecache
         version: v0.2.1
@@ -36,18 +36,18 @@ traefik:
     addInternals: true
     serviceName: traefik
     safeQueryParams:
-      - 'q'
-      - 'f[access_types][]'
-      - 'f[producing_organizations][]'
-      - 'f[media_type][]'
-      - 'f[generes][]'
-      - 'f[topics][]'
-      - 'f[asset_type][]'
-      - 'f[contributing_organizations][]'
-      - 'f[producing_organizations][]'
-      - 'exact_or_range'
-      - 'after_date'
-      - 'before_date'
+      - q
+      - f[access_types][]
+      - f[producing_organizations][]
+      - f[media_type][]
+      - f[generes][]
+      - f[topics][]
+      - f[asset_type][]
+      - f[contributing_organizations][]
+      - f[producing_organizations][]
+      - exact_or_range
+      - after_date
+      - before_date
 
     otlp:
       enabled: true
