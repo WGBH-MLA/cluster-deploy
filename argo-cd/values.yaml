@@ -8,9 +8,10 @@ argo-cd:
       kustomize.buildOptions: --enable-helm
     params:
       server.insecure: true
-  ingress:
-    enabled: true
-    annotations:
-      certmanager.io/cluster-issuer: letsencrypt-production
-    hostname: cd.dev.wgbh-mla.org
-    tls: true
+  server:
+    ingress:
+      enabled: true
+      annotations:
+        certmanager.io/cluster-issuer: letsencrypt-production
+      hostname: cd.dev.wgbh-mla.org
+      tls: true
