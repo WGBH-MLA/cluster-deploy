@@ -14,4 +14,7 @@ argo-cd:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
       hostname: cd.dev.wgbh-mla.org
-      tls: true
+      extraTls:
+      - hosts:
+        - cd.dev.wgbh-mla.org
+        secretName: argocd-server-tls
