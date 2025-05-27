@@ -12,9 +12,9 @@ argo-cd:
     ingress:
       enabled: true
       annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-staging
+        cert-manager.io/cluster-issuer: letsencrypt-production
       hostname: cd.dev.wgbh-mla.org
       extraTls:
       - hosts:
         - cd.dev.wgbh-mla.org
-        secretName: argocd-server-tls
+        secretName: argocd-server-tls-production
