@@ -2,7 +2,8 @@
 version: 2
 updates:
   - package-ecosystem: helm
-    directory: /
+    directories: 
+    - '*'
     schedule:
       interval: weekly
       day: wednesday
