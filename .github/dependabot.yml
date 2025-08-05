@@ -1,0 +1,14 @@
+# Dependabot configuration
+version: 2
+updates:
+  - package-ecosystem: helm
+    directory: /
+    schedule:
+      interval: weekly
+      day: wednesday
+      time: '06:00'
+      timezone: US/Eastern
+    commit-message:
+      prefix: ⬆
+    labels:
+      - maintenance 🔧
