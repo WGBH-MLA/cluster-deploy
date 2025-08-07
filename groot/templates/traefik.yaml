@@ -8,8 +8,7 @@ spec:
   source:
     path: traefik
     repoURL: https://github.com/WGBH-MLA/cluster-deploy.git
-    targetRevision: dev
-    
+    targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
     namespace: traefik
