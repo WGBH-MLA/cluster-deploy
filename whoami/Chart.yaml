@@ -1,0 +1,5 @@
+apiVersion: v2
+name: whoami
+version: 0.0.1
+description: A simple whoami service that responds with the request headers
+home: https://github.com/WGBH-MLA/cluster-deploy

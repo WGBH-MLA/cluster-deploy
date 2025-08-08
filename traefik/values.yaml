@@ -9,7 +9,7 @@ traefik:
     plugins:
       captcha-protect:
         moduleName: github.com/libops/captcha-protect
-        version: v1.8.1
+        version: v1.8.2
       simple-cache:
         moduleName: github.com/traefik/plugin-simplecache
         version: v0.2.1
@@ -36,18 +36,18 @@ traefik:
     addInternals: true
     serviceName: traefik
     safeQueryParams:
-      - 'q'
-      - 'f[access_types][]'
-      - 'f[producing_organizations][]'
-      - 'f[media_type][]'
-      - 'f[generes][]'
-      - 'f[topics][]'
-      - 'f[asset_type][]'
-      - 'f[contributing_organizations][]'
-      - 'f[producing_organizations][]'
-      - 'exact_or_range'
-      - 'after_date'
-      - 'before_date'
+      - q
+      - f[access_types][]
+      - f[producing_organizations][]
+      - f[media_type][]
+      - f[generes][]
+      - f[topics][]
+      - f[asset_type][]
+      - f[contributing_organizations][]
+      - f[producing_organizations][]
+      - exact_or_range
+      - after_date
+      - before_date
 
     otlp:
       enabled: true
@@ -58,16 +58,6 @@ traefik:
 
   ports:
     web:
-      forwardedHeaders:
-        trustedIPs:
-        - 10.0.0.0/19
-        - 10.0.32.0/24
-        - 10.0.128.0/19
-      proxyProtocol:
-        trustedIPs:
-        - 10.0.0.0/19
-        - 10.0.32.0/24
-        - 10.0.128.0/19
       redirections:
         entryPoint:
           permanent: true
@@ -77,27 +67,20 @@ traefik:
       allowACMEByPass: true
       forwardedHeaders:
         trustedIPs:
-          - 10.0.0.0/19
-          - 10.0.32.0/24
-          - 10.0.128.0/19
+          - 10.0.160.0/21
       proxyProtocol:
         trustedIPs:
-          - 10.0.0.0/19
-          - 10.0.32.0/24
-          - 10.0.128.0/19
+          - 10.0.160.0/21
   providers:
     kubernetesCRD:
       allowExternalNameServices: true
       enabled: true
     kubernetesIngress:
       allowExternalNameServices: true
-  securityContext:
-    readOnlyRootFilesystem: false
-    runAsGroup: 0
-    runAsNonRoot: false
-    runAsUser: 0
   service:
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
+      service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-0dd606b3697efbb51,subnet-07bbb81d4ba9443c1
+      service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
     spec:
       externalTrafficPolicy: Local

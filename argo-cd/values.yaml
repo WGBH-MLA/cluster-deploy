@@ -2,14 +2,19 @@ argo-cd:
   global:
     addPrometheusAnnotations: true
   dex:
-    enabled: false
-  notifications:
-    enabled: false
-  applicationSet:
     enabled: false  
-  server:
-    extraArgs:
-      - --insecure
   configs:
     cm:
       kustomize.buildOptions: --enable-helm
+    params:
+      server.insecure: true
+  server:
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      hostname: cd.dev.wgbh-mla.org
+      extraTls:
+      - hosts:
+        - cd.dev.wgbh-mla.org
+        secretName: argocd-server-tls-production

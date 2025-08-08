@@ -1,0 +1,5 @@
+ingress:
+  host: whoami.dev.wgbh-mla.org
+  tls:
+    secretName: null
+    certIssuer: letsencrypt-production
