@@ -67,9 +67,11 @@ traefik:
       allowACMEByPass: true
       forwardedHeaders:
         trustedIPs:
+          - 10.0.32.0/24
           - 10.0.160.0/21
       proxyProtocol:
         trustedIPs:
+          - 10.0.32.0/24
           - 10.0.160.0/21
   providers:
     kubernetesCRD:
@@ -80,7 +82,5 @@ traefik:
   service:
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
-      service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-0dd606b3697efbb51,subnet-07bbb81d4ba9443c1
-      service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
     spec:
       externalTrafficPolicy: Local
