@@ -1,0 +1,8 @@
+# Dev cluster overrides
+traefik:
+  deployment:
+    replicas: 2
+  service:
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-0dd606b3697efbb51,subnet-07bbb81d4ba9443c1
+      service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
