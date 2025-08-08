@@ -5,6 +5,7 @@ traefik:
       prometheus.io/port: '9100'
       prometheus.io/scrape: 'true'
       prometheus.io/collectionInterval: 5s
+
   experimental:
     plugins:
       captcha-protect:
@@ -13,9 +14,11 @@ traefik:
       simple-cache:
         moduleName: github.com/traefik/plugin-simplecache
         version: v0.2.1
+
   ingressRoute:
     dashboard:
       enabled: true
+
   logs:
     access:
       enabled: true
@@ -25,6 +28,7 @@ traefik:
           defaultmode: keep
     general:
       format: json
+
   metrics:
     addInternals: true
     prometheus:
@@ -32,6 +36,7 @@ traefik:
       headerLabels:
         ip: request_X-Real-Ip
         useragent: request_User-Agent
+
   tracing:
     addInternals: true
     serviceName: traefik
@@ -48,7 +53,6 @@ traefik:
       - exact_or_range
       - after_date
       - before_date
-
     otlp:
       enabled: true
       grpc:
@@ -65,20 +69,14 @@ traefik:
           to: websecure
     websecure:
       allowACMEByPass: true
-      forwardedHeaders:
-        trustedIPs:
-          - 10.0.32.0/24
-          - 10.0.160.0/21
-      proxyProtocol:
-        trustedIPs:
-          - 10.0.32.0/24
-          - 10.0.160.0/21
+
   providers:
     kubernetesCRD:
       allowExternalNameServices: true
       enabled: true
     kubernetesIngress:
       allowExternalNameServices: true
+
   service:
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'

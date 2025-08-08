@@ -1,0 +1,10 @@
+# CLAMS cluster overrides
+traefik:
+  ports:
+    websecure:
+      forwardedHeaders:
+        trustedIPs:
+          - 10.0.32.0/24
+      proxyProtocol:
+        trustedIPs:
+          - 10.0.32.0/24

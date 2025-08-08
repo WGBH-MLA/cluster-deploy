@@ -2,6 +2,15 @@
 traefik:
   deployment:
     replicas: 2
+
+  ports:
+    websecure:
+      forwardedHeaders:
+        trustedIPs:
+          - 10.0.160.0/21
+      proxyProtocol:
+        trustedIPs:
+          - 10.0.160.0/21
   service:
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-0dd606b3697efbb51,subnet-07bbb81d4ba9443c1
