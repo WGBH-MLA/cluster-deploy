@@ -6,4 +6,4 @@ description: Application management and continuous deployment with Argo CD
 dependencies:
 - name: argo-cd
   repository: https://argoproj.github.io/argo-helm
-  version: 8.2.5
+  version: 8.3.0
