@@ -1,7 +1,7 @@
 apiVersion: v2
 name: argo-cd
-version: 0.0.4
-appVersion: v3.0.12
+version: 0.1.0
+appVersion: v3.1.0
 description: Application management and continuous deployment with Argo CD
 dependencies:
 - name: argo-cd
