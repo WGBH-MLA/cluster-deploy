@@ -1,0 +1,7 @@
+wordpress:
+  ingress:
+    enabled: true
+    hostname: wordpress.dev.wgbh-mla.org
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-production
+    tls: true
