@@ -1,4 +1,7 @@
 wordpress:
+  image:
+    repository: bitnamisecure/wordpress
+    tag: latest
   ingress:
     enabled: true
     hostname: wordpress.dev.wgbh-mla.org
