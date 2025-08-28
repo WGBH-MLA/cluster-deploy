@@ -8,3 +8,6 @@ wordpress:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-production
     tls: true
+  global:
+    security:
+      allowInsecureImages: true
