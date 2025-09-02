@@ -11,3 +11,6 @@ wordpress:
   global:
     security:
       allowInsecureImages: true
+  multisite:
+    enabled: true
+    host: wordpress.dev.wgbh-mla.org
