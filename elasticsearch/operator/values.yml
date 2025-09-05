@@ -1,0 +1,4 @@
+replicaCount: 1
+image:
+  repository: docker.elastic.co/eck/eck-operator
+  tag: 2.14.0

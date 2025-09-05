@@ -1,0 +1,8 @@
+replicaCount: 1
+image:
+  repository: docker.elastic.co/ingest/ingest-connector
+  tag: latest
+env:
+  BUCKET_NAME: pbcore-json-es-demo
+  TARGET_INDEX: aapb-catalog
+  SCHEDULE: "*/30 * * * *"
