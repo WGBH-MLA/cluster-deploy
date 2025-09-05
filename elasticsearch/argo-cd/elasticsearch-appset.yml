@@ -8,10 +8,10 @@ spec:
     - list:
         # List all applications to create
         elements:
-          - name: operator
+          - name: elastic-operator
           - name: elasticsearch
           - name: kibana
-          - name: connector
+          - name: elastic-connector
   template:
     metadata:
       name: '{{name}}'
