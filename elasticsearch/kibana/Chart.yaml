@@ -6,6 +6,6 @@ version: 0.1.0
 appVersion: "8.14.0"
 
 dependencies:
-  - name: kibana
+  - name: eck-kibana
     version: 8.14.0
     repository: https://helm.elastic.co

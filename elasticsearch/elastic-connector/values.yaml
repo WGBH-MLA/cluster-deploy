@@ -3,6 +3,6 @@ image:
   repository: docker.elastic.co/ingest/ingest-connector
   tag: latest
 env:
-  BUCKET_NAME: pbcore-json-es-demo
+  BUCKET_NAME: pbcore-json-aapb-dev
   TARGET_INDEX: aapb-catalog
   SCHEDULE: "*/30 * * * *"
