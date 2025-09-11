@@ -6,28 +6,53 @@ metadata:
 spec:
   generators:
     - list:
-        # List all applications to create
         elements:
+          # Use 'path' for local charts, use 'chart' for remote charts.
+          # Use 'syncWave' to enforce order of deployments (operator needs to come first).
           - name: elastic-operator
+            repoURL: https://wgbh-mla.github.io/cluster-deploy
+            chart: elastic-operator
+            version: 2.14.0
+            syncWave: 0
+            valuesFiles:
+              - elastic-operator/values.yaml
           - name: elasticsearch
+            repoURL: https://wgbh-mla.github.io/cluster-deploy
+            chart: elasticsearch
+            version: 8.14.0
+            syncWave: 1
           - name: kibana
+            repoURL: https://wgbh-mla.github.io/cluster-deploy
+            chart: kibana
+            version: 8.14.0
+            syncWave: 1
           - name: elastic-connector
+            repoURL: https://wgbh-mla.github.io/cluster-deploy
+            path: elastic-connector
+            targetRevision: 24-elasticsearch-helm-charts
+            syncWave: 1
   template:
     metadata:
       name: '{{name}}'
       annotations:
-        # Set sync-wave to control deployment order
-        argocd.argoproj.io/sync-wave: |
-          {{- if eq .name "operator" }}0{{- end }}
-          {{- if eq .name "elasticsearch" }}1{{- end }}
-          {{- if eq .name "kibana" }}2{{- end }}
-          {{- if eq .name "connector" }}3{{- end }}
+        argocd.argoproj.io/sync-wave: {{.syncWave}}
     spec:
       project: default
       source:
-        repoURL: https://github.com/WGBH-MLA/cluster-deploy
-        targetRevision: 24-elasticsearch-helm-charts   # branch to use for all apps
-        path: elasticsearch/{{name}}                  # directory per chart
+        repoURL: {{.repoURL}}
+        {{- if .chart }}
+        chart: {{.chart}}
+        {{- else if .path }}
+        path: {{.path}}
+        {{- end }}
+        targetRevision: {{.version}}
+        {{- if .valuesFiles }}
+        helm:
+          valueFiles:
+            {{- range .valuesFiles }}
+              - {{ . }}
+            {{- end }}
+        {{- end }}
       destination:
         server: https://kubernetes.default.svc
         namespace: es
