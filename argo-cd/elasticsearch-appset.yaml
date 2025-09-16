@@ -9,27 +9,27 @@ spec:
         elements:
           # Use 'path' for local charts, use 'chart' for remote charts.
           # Use 'syncWave' to enforce order of deployments (operator needs to come first).
-          - name: elastic-operator
+          - name: mla-eck-operator
             repoURL: https://wgbh-mla.github.io/cluster-deploy
-            chart: elastic-operator
-            version: 2.14.0
+            chart: mla-eck-operator
+            version: 0.1.0
             syncWave: 0
             valuesFiles:
-              - elastic-operator/values.yaml
-          - name: elasticsearch
+              - mla-eck-operator/values.yaml
+          - name: mla-eck-elasticsearch
             repoURL: https://wgbh-mla.github.io/cluster-deploy
-            chart: elasticsearch
-            version: 8.14.0
+            chart: mla-eck-elasticsearch
+            version: 0.1.0
             syncWave: 1
-          - name: kibana
+          - name: mla-eck-kibana
             repoURL: https://wgbh-mla.github.io/cluster-deploy
-            chart: kibana
-            version: 8.14.0
+            chart: mla-eck-kibana
+            version: 0.1.0
             syncWave: 1
-          - name: elastic-connector
+          - name: mla-ingest-connector
             repoURL: https://wgbh-mla.github.io/cluster-deploy
-            path: elastic-connector
-            targetRevision: 24-elasticsearch-helm-charts
+            path: mla-ingest-connector
+            version: 0.1.0
             syncWave: 1
   template:
     metadata:
