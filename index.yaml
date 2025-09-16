@@ -1,0 +1,59 @@
+apiVersion: v1
+entries:
+  kibana-stack:
+  - apiVersion: v2
+    appVersion: 8.14.0
+    created: "2025-09-16T16:38:41.886216287Z"
+    dependencies:
+    - name: eck-kibana
+      repository: https://helm.elastic.co
+      version: 0.16.0
+    description: Wrapper chart for Kibana (via ECK)
+    digest: dd028ba4b2462e329183e79094d116f2ad1ce337a26b5241c8d21492cfcd521a
+    name: kibana-stack
+    type: application
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/kibana-stack-0.1.0/kibana-stack-0.1.0.tgz
+    version: 0.1.0
+  mla-eck-elasticsearch:
+  - apiVersion: v2
+    appVersion: 8.14.0
+    created: "2025-09-16T16:38:42.080252527Z"
+    dependencies:
+    - name: eck-elasticsearch
+      repository: https://helm.elastic.co
+      version: 0.16.0
+    description: Wrapper chart for Elasticsearch cluster (via ECK)
+    digest: b17477006c993e87468e5b0d9d9f78a1bf3fc3976fa95dd39852ad7126768ed1
+    name: mla-eck-elasticsearch
+    type: application
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-eck-elasticsearch-0.1.0/mla-eck-elasticsearch-0.1.0.tgz
+    version: 0.1.0
+  mla-eck-operator:
+  - apiVersion: v2
+    appVersion: 2.14.0
+    created: "2025-09-16T16:38:42.294728894Z"
+    dependencies:
+    - name: eck-operator
+      repository: https://helm.elastic.co
+      version: 2.14.0
+    description: Wrapper chart for Elastic ECK Operator
+    digest: 135a45a597ceac1a26871f40f3997886f0b4e7f26041bcd33812dcba194570d8
+    name: mla-eck-operator
+    type: application
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-eck-operator-0.1.0/mla-eck-operator-0.1.0.tgz
+    version: 0.1.0
+  mla-ingest-connector:
+  - apiVersion: v2
+    appVersion: 8.14.0
+    created: "2025-09-16T16:38:42.450730359Z"
+    description: Helm chart for Elastic S3 connector
+    digest: 881fcf220ec144a55fabd436cdd3a03e3f4ea2dad1a85e6ecbb42890aa3380d3
+    name: mla-ingest-connector
+    type: application
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-ingest-connector-0.1.0/mla-ingest-connector-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-09-16T16:38:42.450735359Z"
