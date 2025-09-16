@@ -1,0 +1,64 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: elasticsearch-stack
+  namespace: argo-cd
+spec:
+  generators:
+    - list:
+        elements:
+          # Use 'path' for local charts, use 'chart' for remote charts.
+          # Use 'syncWave' to enforce order of deployments (operator needs to come first).
+          - name: elastic-operator
+            repoURL: https://wgbh-mla.github.io/cluster-deploy
+            chart: elastic-operator
+            version: 2.14.0
+            syncWave: 0
+            valuesFiles:
+              - elastic-operator/values.yaml
+          - name: elasticsearch
+            repoURL: https://wgbh-mla.github.io/cluster-deploy
+            chart: elasticsearch
+            version: 8.14.0
+            syncWave: 1
+          - name: kibana
+            repoURL: https://wgbh-mla.github.io/cluster-deploy
+            chart: kibana
+            version: 8.14.0
+            syncWave: 1
+          - name: elastic-connector
+            repoURL: https://wgbh-mla.github.io/cluster-deploy
+            path: elastic-connector
+            targetRevision: 24-elasticsearch-helm-charts
+            syncWave: 1
+  template:
+    metadata:
+      name: '{{name}}'
+      annotations:
+        argocd.argoproj.io/sync-wave: {{.syncWave}}
+    spec:
+      project: default
+      source:
+        repoURL: {{.repoURL}}
+        {{- if .chart }}
+        chart: {{.chart}}
+        {{- else if .path }}
+        path: {{.path}}
+        {{- end }}
+        targetRevision: {{.version}}
+        {{- if .valuesFiles }}
+        helm:
+          valueFiles:
+            {{- range .valuesFiles }}
+              - {{ . }}
+            {{- end }}
+        {{- end }}
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: es
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
