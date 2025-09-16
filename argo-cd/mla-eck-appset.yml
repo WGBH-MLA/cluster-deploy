@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: elasticsearch-stack
+  name: mla-eck-stack
   namespace: argo-cd
 spec:
   generators:
