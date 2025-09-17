@@ -4,6 +4,7 @@ metadata:
   name: mla-eck-stack
   namespace: argo-cd
 spec:
+  goTemplate: true
   generators:
     - list:
         elements:
@@ -12,50 +13,42 @@ spec:
           - name: mla-eck-operator
             repoURL: https://wgbh-mla.github.io/cluster-deploy
             chart: mla-eck-operator
-            version: 0.1.0
+            targetVersion: 0.1.0
             syncWave: 0
-            valuesFiles:
-              - mla-eck-operator/values.yaml
+            namespace: elastic-system
           - name: mla-eck-elasticsearch
             repoURL: https://wgbh-mla.github.io/cluster-deploy
             chart: mla-eck-elasticsearch
-            version: 0.1.0
+            targetVersion: 0.1.0
             syncWave: 1
+            namespace: es
           - name: mla-eck-kibana
             repoURL: https://wgbh-mla.github.io/cluster-deploy
             chart: mla-eck-kibana
-            version: 0.1.0
+            targetVersion: 0.1.0
             syncWave: 1
+            namespace: es
           - name: mla-ingest-connector
             repoURL: https://wgbh-mla.github.io/cluster-deploy
-            path: mla-ingest-connector
-            version: 0.1.0
+            chart: mla-ingest-connector
+            targetVersion: 0.1.0
             syncWave: 1
+            namespace: es
   template:
     metadata:
-      name: '{{name}}'
+      name: '{{.name}}'
       annotations:
-        argocd.argoproj.io/sync-wave: {{.syncWave}}
+        argocd.argoproj.io/sync-wave: "{{.syncWave}}"
     spec:
       project: default
       source:
-        repoURL: {{.repoURL}}
-        {{- if .chart }}
-        chart: {{.chart}}
-        {{- else if .path }}
-        path: {{.path}}
-        {{- end }}
-        targetRevision: {{.version}}
-        {{- if .valuesFiles }}
-        helm:
-          valueFiles:
-            {{- range .valuesFiles }}
-              - {{ . }}
-            {{- end }}
-        {{- end }}
+        repoURL: "{{.repoURL}}"
+        chart: "{{.chart}}"
+        path: "{{.path}}"
+        targetRevision: "{{.targetVersion}}"
       destination:
         server: https://kubernetes.default.svc
-        namespace: es
+        namespace: "{{.namespace}}"
       syncPolicy:
         automated:
           prune: true
