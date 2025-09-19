@@ -13,25 +13,25 @@ spec:
           - name: mla-eck-operator
             repoURL: https://wgbh-mla.github.io/cluster-deploy
             chart: mla-eck-operator
-            targetVersion: 0.1.0
+            targetRevision: 0.1.0
             syncWave: 0
             namespace: elastic-system
           - name: mla-eck-elasticsearch
             repoURL: https://wgbh-mla.github.io/cluster-deploy
             chart: mla-eck-elasticsearch
-            targetVersion: 0.1.0
+            targetRevision: 0.1.0
             syncWave: 1
             namespace: es
           - name: mla-eck-kibana
             repoURL: https://wgbh-mla.github.io/cluster-deploy
             chart: mla-eck-kibana
-            targetVersion: 0.1.0
+            targetRevision: 0.1.0
             syncWave: 1
             namespace: es
           - name: mla-ingest-connector
             repoURL: https://wgbh-mla.github.io/cluster-deploy
             chart: mla-ingest-connector
-            targetVersion: 0.1.0
+            targetRevision: 0.1.0
             syncWave: 1
             namespace: es
   template:
@@ -45,7 +45,7 @@ spec:
         repoURL: "{{.repoURL}}"
         chart: "{{.chart}}"
         path: "{{.path}}"
-        targetRevision: "{{.targetVersion}}"
+        targetRevision: "{{.targetRevision}}"
       destination:
         server: https://kubernetes.default.svc
         namespace: "{{.namespace}}"
