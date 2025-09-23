@@ -25,7 +25,7 @@ spec:
           - name: mla-eck-kibana
             repoURL: https://wgbh-mla.github.io/cluster-deploy
             chart: mla-eck-kibana
-            targetRevision: 0.1.0
+            targetRevision: 0.1.1
             syncWave: 1
             namespace: es
           - name: mla-ingest-connector
