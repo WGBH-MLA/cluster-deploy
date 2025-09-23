@@ -1,5 +1,5 @@
 apiVersion: v2
-name: kibana-stack
+name: mla-eck-kibana
 description: Wrapper chart for Kibana (via ECK)
 type: application
 version: "0.1.0"
