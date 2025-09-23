@@ -1,8 +1,6 @@
-replicas: 3
-resources:
-  requests:
-    memory: "2Gi"
-    cpu: "500m"
-  limits:
-    memory: "4Gi"
-    cpu: "1"
+eck-elasticsearch:
+  elasticsearch:
+    version: 8.14.0
+    nodeSets:
+      - name: default
+        count: 3
