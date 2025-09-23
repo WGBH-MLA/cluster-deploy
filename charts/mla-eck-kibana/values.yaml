@@ -1,2 +1,4 @@
-count: 1
-elasticsearchRef: elasticsearch-stack
+eck-kibana:
+    elasticsearchRef:
+      name: mla-eck-elasticsearch
+      namespace: es
