@@ -2,7 +2,7 @@ apiVersion: v2
 name: mla-eck-kibana
 description: Wrapper chart for Kibana (via ECK)
 type: application
-version: "0.1.1"
+version: "0.1.2"
 appVersion: "0.16.0"
 
 dependencies:
