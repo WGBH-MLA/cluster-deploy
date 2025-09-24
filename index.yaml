@@ -33,6 +33,20 @@ entries:
   mla-eck-kibana:
   - apiVersion: v2
     appVersion: 0.16.0
+    created: "2025-09-24T18:18:30.273649694Z"
+    dependencies:
+    - name: eck-kibana
+      repository: https://helm.elastic.co
+      version: 0.16.0
+    description: Wrapper chart for Kibana (via ECK)
+    digest: 0f02d835a8260ef970463ee47f32053fc19bdef40814ff57a14e0acd9710a0c4
+    name: mla-eck-kibana
+    type: application
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-eck-kibana-0.1.2/mla-eck-kibana-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.16.0
     created: "2025-09-23T19:27:06.323330584Z"
     dependencies:
     - name: eck-kibana
@@ -85,4 +99,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-ingest-connector-0.1.0/mla-ingest-connector-0.1.0.tgz
     version: 0.1.0
-generated: "2025-09-23T19:27:06.323356091Z"
+generated: "2025-09-24T18:18:30.273664291Z"
