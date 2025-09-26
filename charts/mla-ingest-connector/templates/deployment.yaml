@@ -6,7 +6,7 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "connector.name" . }}
+      app: {{ include "mla-ingest-connector.name" . }}
   template:
     metadata:
       labels:
