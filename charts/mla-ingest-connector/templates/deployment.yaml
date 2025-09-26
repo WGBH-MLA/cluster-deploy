@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "connector.fullname" . }}
+  name: {{ include "mla-ingest-connector.fullname" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -10,7 +10,7 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ include "connector.name" . }}
+        app: {{ include "mla-ingest-connector.name" . }}
     spec:
       containers:
         - name: connector
