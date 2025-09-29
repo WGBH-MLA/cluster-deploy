@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
-  repository: docker.elastic.co/ingest/ingest-connector
-  tag: latest
+  repository: docker.elastic.co/integrations/elastic-connectors
+  tag: 8.17.5
 env:
   BUCKET_NAME: pbcore-json-aapb-dev
   TARGET_INDEX: aapb-catalog
