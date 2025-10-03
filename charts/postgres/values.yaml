@@ -1,3 +1,7 @@
 cluster:
   postgresGID: 65534
   postgresUID: 65534
+
+  initdb:
+    database: app
+    owner: app
