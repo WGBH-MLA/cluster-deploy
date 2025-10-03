@@ -1,0 +1,3 @@
+cluster:
+  postgresGID: 65534
+  postgresUID: 65534
