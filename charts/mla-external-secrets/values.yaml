@@ -1,0 +1,7 @@
+external-secrets:
+  installCRDs: true
+  replicaCount: 2
+  serviceAccount:
+    name: external-secrets-operator
+    annotations:
+      eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/eso-irsa-role
