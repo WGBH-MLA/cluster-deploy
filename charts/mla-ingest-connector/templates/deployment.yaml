@@ -13,7 +13,7 @@ spec:
         app: {{ include "mla-ingest-connector.name" . }}
     spec:
       containers:
-        - name: connector
+        - name: elastic-connector
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           args: ["/app/bin/elastic-ingest", "-c", "/config/config.yml"]
           env:
