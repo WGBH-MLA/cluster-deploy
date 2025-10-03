@@ -34,6 +34,12 @@ spec:
             targetRevision: 0.1.4
             syncWave: 1
             namespace: es
+          - name: mla-external-secrets
+            repoURL: https://wgbh-mla.github.io/cluster-deploy
+            chart: mla-external-secrets
+            targetRevision: 0.1.0
+            syncWave: 1
+            namespace: external-secrets
   template:
     metadata:
       name: '{{.name}}'
