@@ -1,5 +1,6 @@
 cluster:
-  imageName: postgres:alpine
-  initdb:
-    database: app
-    owner: app
+  cluster:
+    imageName: postgres:alpine
+    initdb:
+      database: app
+      owner: app
