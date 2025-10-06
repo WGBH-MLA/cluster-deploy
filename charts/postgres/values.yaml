@@ -1,7 +1,5 @@
 cluster:
-  postgresGID: 65534
-  postgresUID: 65534
-
+  imageName: postgres:alpine
   initdb:
     database: app
     owner: app
