@@ -104,6 +104,19 @@ entries:
     version: 0.1.0
   mla-external-secrets:
   - apiVersion: v2
+    created: "2025-10-06T17:59:21.47189233Z"
+    dependencies:
+    - name: external-secrets
+      repository: https://charts.external-secrets.io
+      version: 0.20.1
+    description: Wrapper chart for External Secrets Operator (ESO)
+    digest: 89c5b0fbf8ed14b982816e548144e25e7ceaa2b5fe8120bdbcae513e5e80c8cd
+    name: mla-external-secrets
+    type: application
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-external-secrets-0.1.2/mla-external-secrets-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     created: "2025-10-03T15:59:54.756731527Z"
     dependencies:
     - name: external-secrets
@@ -220,4 +233,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-ingest-connector-0.1.0/mla-ingest-connector-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-06T17:36:32.621198254Z"
+generated: "2025-10-06T17:59:21.471921104Z"
