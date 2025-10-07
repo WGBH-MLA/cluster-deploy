@@ -4,5 +4,5 @@ cluster:
       database: app
       owner: app
     storage:
-      size: null
-      class: null
+      size: ""
+      storageClass: ""
