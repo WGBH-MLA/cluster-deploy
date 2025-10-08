@@ -197,6 +197,16 @@ entries:
   mla-ingest-connector:
   - apiVersion: v2
     appVersion: 8.17.5
+    created: "2025-10-08T17:01:21.108761907Z"
+    description: Helm chart for Elastic S3 connector
+    digest: 8c0579d761aeb0779fe7a0d4ae6aa4fa6720c3c908159aa261176dc479bf4b78
+    name: mla-ingest-connector
+    type: application
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-ingest-connector-0.1.10/mla-ingest-connector-0.1.10.tgz
+    version: 0.1.10
+  - apiVersion: v2
+    appVersion: 8.17.5
     created: "2025-10-08T16:51:12.648096128Z"
     description: Helm chart for Elastic S3 connector
     digest: ee69c1e11ebc97f772610be2ab214cfa696e8bec77902a3898720afb95b77d79
@@ -295,4 +305,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-ingest-connector-0.1.0/mla-ingest-connector-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-08T16:51:12.64815606Z"
+generated: "2025-10-08T17:01:21.108835375Z"
