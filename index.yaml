@@ -18,6 +18,20 @@ entries:
   mla-eck-elasticsearch:
   - apiVersion: v2
     appVersion: 8.14.0
+    created: "2025-10-08T19:49:14.732539526Z"
+    dependencies:
+    - name: eck-elasticsearch
+      repository: https://helm.elastic.co
+      version: 0.16.0
+    description: Wrapper chart for Elasticsearch cluster (via ECK)
+    digest: 0bc38cefad2c6cad2f390b1b14a78317f5499949e1e30faa86297b0d6f7abfc2
+    name: mla-eck-elasticsearch
+    type: application
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-eck-elasticsearch-0.1.1/mla-eck-elasticsearch-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 8.14.0
     created: "2025-09-16T16:38:42.080252527Z"
     dependencies:
     - name: eck-elasticsearch
@@ -315,4 +329,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-ingest-connector-0.1.0/mla-ingest-connector-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-08T19:28:50.896770478Z"
+generated: "2025-10-08T19:49:14.732585514Z"
