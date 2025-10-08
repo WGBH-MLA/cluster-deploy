@@ -2,7 +2,7 @@ apiVersion: v2
 name: mla-external-secrets
 description: Wrapper chart for External Secrets Operator (ESO)
 type: application
-version: 0.1.4
+version: 0.1.5
 
 dependencies:
   - name: external-secrets
