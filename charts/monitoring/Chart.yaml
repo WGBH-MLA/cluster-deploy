@@ -1,0 +1,8 @@
+apiVersion: v2
+name: monitoring
+description: A Helm chart for Cluster monitoring with Prometheus and Grafana
+version: 0.1.0
+dependencies:
+- name: kube-prometheus-stack
+  repository: https://prometheus-community.github.io/helm-charts
+  version: 77.14.0
