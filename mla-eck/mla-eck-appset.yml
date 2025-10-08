@@ -31,7 +31,7 @@ spec:
           - name: mla-ingest-connector
             repoURL: https://wgbh-mla.github.io/cluster-deploy
             chart: mla-ingest-connector
-            targetRevision: 0.1.9
+            targetRevision: 0.1.10
             syncWave: 1
             namespace: es
           - name: mla-external-secrets

@@ -23,7 +23,7 @@ spec:
           {{- end }}
           volumeMounts:
             - name: config-volume
-              mountPath: /app/config.yml
+              mountPath: /config/config.yml
               readOnly: true
       volumes:
         - name: config-volume
