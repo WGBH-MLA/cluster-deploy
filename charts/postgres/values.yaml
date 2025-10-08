@@ -5,5 +5,5 @@ cluster:
   cluster:
     storage:
       storageClass: gp2
-  monitoring:
-    enabled: true
+    monitoring:
+      enabled: true
