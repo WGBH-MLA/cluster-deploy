@@ -2,7 +2,7 @@ apiVersion: v2
 name: mla-eck-elasticsearch
 description: Wrapper chart for Elasticsearch cluster (via ECK)
 type: application
-version: "0.1.2"
+version: "0.1.3"
 appVersion: "8.14.0"
 
 dependencies:

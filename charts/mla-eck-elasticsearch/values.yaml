@@ -1,4 +1,4 @@
-elasticsearch:
+eck-elasticsearch:
   version: 8.14.0
   nodeSets:
     - name: default
