@@ -1,6 +1,5 @@
-eck-elasticsearch:
-  elasticsearch:
-    version: 8.14.0
-    nodeSets:
-      - name: default
-        count: 3
+elasticsearch:
+  version: 8.14.0
+  nodeSets:
+    - name: default
+      count: 3
