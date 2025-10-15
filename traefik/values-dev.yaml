@@ -4,6 +4,13 @@ traefik:
     replicas: 2
 
   ports:
+    web:
+      forwardedHeaders:
+        trustedIPs:
+          - 10.0.160.0/21
+      proxyProtocol:
+        trustedIPs:
+          - 10.0.160.0/21
     websecure:
       forwardedHeaders:
         trustedIPs:
