@@ -6,4 +6,4 @@ description: Prometheus monitoring system
 dependencies:
 - name: prometheus
   repository: https://prometheus-community.github.io/helm-charts
-  version: 27.8.0
+  version: 27.40.1
