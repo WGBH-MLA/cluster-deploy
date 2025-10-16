@@ -1,5 +1,14 @@
 eck-elasticsearch:
   version: 8.14.0
   nodeSets:
-    - name: default
-      count: 3
+  - name: default
+    count: 3
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-production
+    hosts:
+    - host: elastic.dev.wgbh-mla.org
+      path: /
+    tls:
+      enabled: true
