@@ -8,20 +8,6 @@ spec:
   generators:
   - list:
       elements:
-      # Use 'path' for local charts, use 'chart' for remote charts.
-      # Use 'syncWave' to enforce order of deployments (operator needs to come first).
-      - name: mla-eck-operator
-        repoURL: https://wgbh-mla.github.io/cluster-deploy
-        chart: mla-eck-operator
-        targetRevision: 0.1.0
-        syncWave: 0
-        namespace: elastic-system
-      # - name: mla-eck-elasticsearch
-      #   repoURL: https://wgbh-mla.github.io/cluster-deploy
-      #   chart: mla-eck-elasticsearch
-      #   targetRevision: 0.1.4
-      #   syncWave: 1
-      #   namespace: es
       - name: mla-eck-kibana
         repoURL: https://wgbh-mla.github.io/cluster-deploy
         chart: mla-eck-kibana

@@ -1,4 +1,6 @@
-replicaCount: 1
-image:
-  repository: docker.elastic.co/eck/eck-operator
-  tag: 2.14.0
+eck-operator:
+  config:
+    metrics:
+      port: '9000'
+  podMonitor:
+    enabled: true
