@@ -17,6 +17,20 @@ entries:
     version: 0.1.0
   mla-eck-elasticsearch:
   - apiVersion: v2
+    appVersion: 9.1.0
+    created: "2025-10-17T19:54:47.626366761Z"
+    dependencies:
+    - name: eck-elasticsearch
+      repository: https://helm.elastic.co
+      version: 0.16.0
+    description: Wrapper chart for Elasticsearch cluster (via ECK)
+    digest: dd433b43099ffb483aafcf3fa5040fe58d2ea939e9511feca164ae2f0875272c
+    name: mla-eck-elasticsearch
+    type: application
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-eck-elasticsearch-0.2.0/mla-eck-elasticsearch-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     appVersion: 8.14.0
     created: "2025-10-16T19:26:00.152303172Z"
     dependencies:
@@ -87,6 +101,20 @@ entries:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-eck-elasticsearch-0.1.0/mla-eck-elasticsearch-0.1.0.tgz
     version: 0.1.0
   mla-eck-kibana:
+  - apiVersion: v2
+    appVersion: 9.1.0
+    created: "2025-10-17T19:54:47.790651326Z"
+    dependencies:
+    - name: eck-kibana
+      repository: https://helm.elastic.co
+      version: 0.16.0
+    description: Wrapper chart for Kibana (via ECK)
+    digest: 1378439dfc111bce1825353077b010d5cd0fce9b3e12b93961d3383b8353880f
+    name: mla-eck-kibana
+    type: application
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-eck-kibana-0.2.0/mla-eck-kibana-0.2.0.tgz
+    version: 0.2.0
   - apiVersion: v2
     appVersion: 0.16.0
     created: "2025-09-24T20:06:39.487875099Z"
@@ -385,4 +413,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-ingest-connector-0.1.0/mla-ingest-connector-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-17T19:21:40.165060239Z"
+generated: "2025-10-17T19:54:47.790729132Z"
