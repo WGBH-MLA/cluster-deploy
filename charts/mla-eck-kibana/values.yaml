@@ -1,4 +1,5 @@
 eck-kibana:
+  version: 9.1.2
   elasticsearchRef:
     name: mla-eck-elasticsearch
     namespace: es

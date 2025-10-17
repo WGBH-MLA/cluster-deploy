@@ -8,12 +8,6 @@ spec:
   generators:
   - list:
       elements:
-      - name: mla-eck-kibana
-        repoURL: https://wgbh-mla.github.io/cluster-deploy
-        chart: mla-eck-kibana
-        targetRevision: 0.1.3
-        syncWave: 1
-        namespace: es
       - name: mla-ingest-connector
         repoURL: https://wgbh-mla.github.io/cluster-deploy
         chart: mla-ingest-connector
