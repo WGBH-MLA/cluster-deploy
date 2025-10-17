@@ -1,6 +1,4 @@
 external-secrets:
-  installCRDs: true
-  replicaCount: 2
   serviceAccount:
     name: external-secrets-operator
     annotations:
