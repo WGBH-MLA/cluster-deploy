@@ -145,6 +145,20 @@ entries:
     version: 0.1.0
   mla-eck-operator:
   - apiVersion: v2
+    appVersion: 3.1.0
+    created: "2025-10-17T19:21:40.164977194Z"
+    dependencies:
+    - name: eck-operator
+      repository: https://helm.elastic.co
+      version: 3.1.0
+    description: Wrapper chart for Elastic ECK Operator
+    digest: 9cbc56a02b0caff44f15c210b052469e37d62e071ef22b3bf0d927c706d13f6e
+    name: mla-eck-operator
+    type: application
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-eck-operator-0.2.0/mla-eck-operator-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     appVersion: 2.14.0
     created: "2025-09-16T16:38:42.294728894Z"
     dependencies:
@@ -371,4 +385,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-ingest-connector-0.1.0/mla-ingest-connector-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-16T19:26:00.152374157Z"
+generated: "2025-10-17T19:21:40.165060239Z"
