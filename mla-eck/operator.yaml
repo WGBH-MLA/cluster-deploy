@@ -11,7 +11,7 @@ spec:
     path: charts/mla-eck-operator
   destination:
     server: https://kubernetes.default.svc
-    namespace: es
+    namespace: elastic-system
   syncPolicy:
     automated:
       selfHeal: true
