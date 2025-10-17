@@ -6,60 +6,60 @@ metadata:
 spec:
   goTemplate: true
   generators:
-    - list:
-        elements:
-          # Use 'path' for local charts, use 'chart' for remote charts.
-          # Use 'syncWave' to enforce order of deployments (operator needs to come first).
-          - name: mla-eck-operator
-            repoURL: https://wgbh-mla.github.io/cluster-deploy
-            chart: mla-eck-operator
-            targetRevision: 0.1.0
-            syncWave: 0
-            namespace: elastic-system
-          - name: mla-eck-elasticsearch
-            repoURL: https://wgbh-mla.github.io/cluster-deploy
-            chart: mla-eck-elasticsearch
-            targetRevision: 0.1.4
-            syncWave: 1
-            namespace: es
-          - name: mla-eck-kibana
-            repoURL: https://wgbh-mla.github.io/cluster-deploy
-            chart: mla-eck-kibana
-            targetRevision: 0.1.3
-            syncWave: 1
-            namespace: es
-          - name: mla-ingest-connector
-            repoURL: https://wgbh-mla.github.io/cluster-deploy
-            chart: mla-ingest-connector
-            targetRevision: 0.1.11
-            syncWave: 1
-            namespace: es
-          - name: mla-external-secrets
-            repoURL: https://wgbh-mla.github.io/cluster-deploy
-            chart: mla-external-secrets
-            targetRevision: 0.1.6
-            syncWave: 1
-            namespace: external-secrets
+  - list:
+      elements:
+      # Use 'path' for local charts, use 'chart' for remote charts.
+      # Use 'syncWave' to enforce order of deployments (operator needs to come first).
+      - name: mla-eck-operator
+        repoURL: https://wgbh-mla.github.io/cluster-deploy
+        chart: mla-eck-operator
+        targetRevision: 0.1.0
+        syncWave: 0
+        namespace: elastic-system
+      - name: mla-eck-elasticsearch
+        repoURL: https://wgbh-mla.github.io/cluster-deploy
+        chart: mla-eck-elasticsearch
+        targetRevision: 0.1.4
+        syncWave: 1
+        namespace: es
+      - name: mla-eck-kibana
+        repoURL: https://wgbh-mla.github.io/cluster-deploy
+        chart: mla-eck-kibana
+        targetRevision: 0.1.3
+        syncWave: 1
+        namespace: es
+      - name: mla-ingest-connector
+        repoURL: https://wgbh-mla.github.io/cluster-deploy
+        chart: mla-ingest-connector
+        targetRevision: 0.1.11
+        syncWave: 1
+        namespace: es
+      - name: mla-external-secrets
+        repoURL: https://wgbh-mla.github.io/cluster-deploy
+        chart: mla-external-secrets
+        targetRevision: 0.1.6
+        syncWave: 1
+        namespace: external-secrets
   template:
     metadata:
-      name: '{{.name}}'
+      name: '{{ .name }}'
       annotations:
-        argocd.argoproj.io/sync-wave: "{{.syncWave}}"
+        argocd.argoproj.io/sync-wave: '{{ .syncWave }}'
     spec:
-      project: default
+      project: elastic
       source:
-        repoURL: "{{.repoURL}}"
-        chart: "{{.chart}}"
-        path: "{{.path}}"
-        targetRevision: "{{.targetRevision}}"
+        repoURL: '{{ .repoURL }}'
+        chart: '{{ .chart }}'
+        # path: '{{ .path }}'
+        targetRevision: '{{ .targetRevision }}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: "{{.namespace}}"
+        namespace: '{{ .namespace }}'
       syncPolicy:
         automated:
           prune: true
           selfHeal: true
         syncOptions:
-          - CreateNamespace=true
-          - PruneLast=true
-          - Replace=true
+        - CreateNamespace=true
+        - PruneLast=true
+        - Replace=true
