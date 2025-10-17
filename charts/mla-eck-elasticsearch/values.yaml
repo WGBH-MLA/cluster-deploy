@@ -11,4 +11,10 @@ eck-elasticsearch:
     - host: elastic.dev.wgbh-mla.org
       path: /
     tls:
-      enabled: true
+    - secretName: elasticsearch-tls
+      hosts:
+      - elastic.dev.wgbh-mla.org
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: true
