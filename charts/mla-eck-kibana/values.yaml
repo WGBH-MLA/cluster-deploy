@@ -8,7 +8,7 @@ eck-kibana:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-production
     hosts:
-    - host: serarch.dev.wgbh-mla.org
+    - host: search.dev.wgbh-mla.org
       path: /
     tls:
       enabled: true
