@@ -13,3 +13,7 @@ eck-kibana:
     tls:
       enabled: true
       secretName: mla-eck-kibana-tls
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: true
