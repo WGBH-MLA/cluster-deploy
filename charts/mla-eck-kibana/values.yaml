@@ -3,3 +3,13 @@ eck-kibana:
   elasticsearchRef:
     name: mla-eck-elasticsearch
     namespace: es
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-production
+    hosts:
+    - host: serarch.dev.wgbh-mla.org
+      path: /
+    tls:
+      enabled: true
+      secretName: mla-eck-kibana-tls
