@@ -15,7 +15,7 @@ spec:
       containers:
         - name: elastic-connector
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          args: ["/app/bin/elastic-ingest", "-c", "/app/config.yml"]
+          args: ["/app/bin/elastic-ingest", "-c", "/config/config.yml"]
           env:
           {{- range $key, $value := .Values.env }}
             - name: {{ $key }}
