@@ -10,10 +10,10 @@ traefik:
     plugins:
       captcha-protect:
         moduleName: github.com/libops/captcha-protect
-        version: v1.8.2
+        version: v1.12.0
       simple-cache:
-        moduleName: github.com/traefik/plugin-simplecache
-        version: v0.2.1
+        moduleName: github.com/ciaranj/cacheify
+        version: v0.0.7
 
   ingressRoute:
     dashboard:
