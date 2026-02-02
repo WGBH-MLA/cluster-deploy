@@ -14,7 +14,7 @@ app-template:
               spec:
                 periodSeconds: 300
                 httpGet:
-                  path: /
+                  path: /docs
                   port: 8000
             startup:
               enabled: true
@@ -24,7 +24,7 @@ app-template:
                 periodSeconds: 3
                 failureThreshold: 20
                 httpGet:
-                  path: /
+                  path: /docs
                   port: 8000
       defaultContainerOptionsStrategy: merge
       defaultContainerOptions:
