@@ -1,0 +1,23 @@
+apiVersion: v2
+name: pbcore-util
+description: A Helm chart for PBCore Utility Services
+version: 0.0.1
+appVersion: v2.1
+dependencies:
+- name: app-template
+  version: 4.6.2
+  repository: https://bjw-s-labs.github.io/helm-charts/
+home: https://pbcore.wgbh-mla.org
+icon: https://pbcore.org/assets/images/pbcore-logo.png
+keywords:
+  - metadata
+  - pbcore
+  - xml
+  - json
+maintainers:
+  - name: Andrew Myers
+    email: andrew_myers@wgbh.org
+  - name: Harpo
+    email: ryan_harbert@wgbh.org
+sources:
+  - https://github.com/WGBH-MLA/pbcore-util
