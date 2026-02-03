@@ -1,0 +1,65 @@
+app-template:
+  controllers:
+    main:
+      containers:
+        main:
+          image:
+            repository: ghcr.io/wgbh-mla/pbcore-util
+            tag: pr-6
+          probes:
+            liveness:
+              enabled: true
+              custom: true
+              type: HTTP
+              spec:
+                periodSeconds: 300
+                httpGet:
+                  path: /docs
+                  port: 8000
+            startup:
+              enabled: true
+              custom: true
+              spec:
+                initialDelaySeconds: 5
+                periodSeconds: 3
+                failureThreshold: 20
+                httpGet:
+                  path: /docs
+                  port: 8000
+      defaultContainerOptionsStrategy: merge
+      defaultContainerOptions:
+        image:
+          pullPolicy: Always
+        resources:
+          limits:
+            cpu: '1'
+            memory: 1Gi
+          requests:
+            cpu: 50m
+            memory: 50Mi
+      replicas: null
+      strategy: RollingUpdate
+      rollingUpdate:
+        unavailable: 0
+        surge: 5
+
+  service:
+    main:
+      ports:
+        http:
+          port: 80
+          targetPort: 8000
+  ingress:
+    main:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      hosts:
+      - host: pbcore.dev.wgbh-mla.org
+        paths:
+        - path: /
+          service:
+            identifier: main
+      tls:
+      - secretName: pbcore-util-tls
+        hosts:
+        - pbcore.dev.wgbh-mla.org
