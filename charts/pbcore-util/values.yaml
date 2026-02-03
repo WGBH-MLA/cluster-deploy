@@ -60,5 +60,6 @@ app-template:
           service:
             identifier: main
       tls:
-      - hosts:
+      - secretName: pbcore-util-tls
+        hosts:
         - pbcore.dev.wgbh-mla.org
