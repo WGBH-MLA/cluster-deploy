@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: groot
+  name: traefik
   namespace: argo-cd
 spec:
   project: default
   source:
+    path: charts/traefik
     repoURL: https://github.com/WGBH-MLA/cluster-deploy.git
-    path: groot
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: groot
+    namespace: traefik
   syncPolicy:
     automated:
       selfHeal: true

@@ -1,20 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: traefik
+  name: cert-manager
   namespace: argo-cd
 spec:
   project: default
   source:
-    path: traefik
     repoURL: https://github.com/WGBH-MLA/cluster-deploy.git
+    path: charts/cert-manager
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: traefik
+    namespace: cert-manager
   syncPolicy:
     automated:
       selfHeal: true
       prune: true
-    syncOptions:
-      - CreateNamespace=true
+    createNamespace: true
