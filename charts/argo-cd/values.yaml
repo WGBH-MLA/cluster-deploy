@@ -1,6 +1,13 @@
 argo-cd:
   global:
     addPrometheusAnnotations: true
+    domain: cd.dev.wgbh-mla.org
+  certificate:
+    enabled: true
+    issuer:
+      kind: ClusterIssuer
+      name: letsencrypt-production
+      group: cert-manager.io
   dex:
     enabled: false  
   configs:
@@ -9,10 +16,4 @@ argo-cd:
   server:
     ingress:
       enabled: true
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
-      hostname: cd.dev.wgbh-mla.org
-      extraTls:
-      - hosts:
-        - cd.dev.wgbh-mla.org
-        secretName: argocd-server-tls-production
+      tls: true
