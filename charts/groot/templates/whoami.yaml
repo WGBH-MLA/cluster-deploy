@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-cd
+  name: whoami
   namespace: argo-cd
 spec:
   project: default
   source:
     repoURL: https://github.com/WGBH-MLA/cluster-deploy.git
-    path: argo-cd
+    path: charts/whoami
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: argo-cd
+    namespace: whoami
   syncPolicy:
     automated:
       selfHeal: true
