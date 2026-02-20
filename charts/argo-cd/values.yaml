@@ -6,8 +6,6 @@ argo-cd:
   configs:
     cm:
       kustomize.buildOptions: --enable-helm
-    params:
-      server.insecure: true
   server:
     ingress:
       enabled: true
