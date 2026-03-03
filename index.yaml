@@ -1,5 +1,43 @@
 apiVersion: v1
 entries:
+  argo-cd:
+  - apiVersion: v2
+    appVersion: v3.3.1
+    created: "2026-03-03T20:45:02.141527154Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 9.4.3
+    description: Application management and continuous deployment with Argo CD
+    digest: cfc65ce6f585c3b323eedb9fb66e9a92d6e2bcd9c0438c54f7f8c16bfa869dbd
+    name: argo-cd
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/argo-cd-0.2.2/argo-cd-0.2.2.tgz
+    version: 0.2.2
+  cert-manager:
+  - apiVersion: v2
+    appVersion: v1.18.2
+    created: "2026-03-03T20:45:02.341751883Z"
+    dependencies:
+    - name: cert-manager
+      repository: https://charts.jetstack.io
+      version: 1.18.2
+    description: A Helm chart for managing cert-manager and SSL certificates
+    digest: 66aac9cbad6dbeb66cc1c4e43a9e5359af36065d38639e1d820adfd2b16f55b1
+    name: cert-manager
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/cert-manager-0.0.2/cert-manager-0.0.2.tgz
+    version: 0.0.2
+  groot:
+  - apiVersion: v2
+    created: "2026-03-03T20:45:02.555106694Z"
+    description: A bootstrapped Argo CD deployment
+    digest: d1c41f98db653022eaca0af52de82ec136b257a7155061cb7a93e373edcc7a87
+    home: https://github.com/WGBH-MLA/cluster-deploy
+    name: groot
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/groot-0.0.4/groot-0.0.4.tgz
+    version: 0.0.4
   kibana-stack:
   - apiVersion: v2
     appVersion: 8.14.0
@@ -287,6 +325,20 @@ entries:
   mla-external-secrets:
   - apiVersion: v2
     appVersion: v0.20.3
+    created: "2026-03-03T20:45:02.795206004Z"
+    dependencies:
+    - name: external-secrets
+      repository: https://charts.external-secrets.io
+      version: 0.20.3
+    description: Wrapper chart for External Secrets Operator (ESO)
+    digest: ceafeceb81fcc91f31955c90193bb9522e3062cb92016c670ccd6e78fccd3c3f
+    name: mla-external-secrets
+    type: application
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-external-secrets-0.2.0/mla-external-secrets-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: v0.20.3
     created: "2025-10-17T22:02:36.594747367Z"
     dependencies:
     - name: external-secrets
@@ -541,4 +593,98 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-ingest-connector-0.1.0/mla-ingest-connector-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-23T16:01:45.618212568Z"
+  monitoring:
+  - apiVersion: v2
+    created: "2026-03-03T20:45:02.99735159Z"
+    dependencies:
+    - name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 10.1.2
+    - name: prometheus
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 27.42.0
+    description: A Helm chart for Grafana monitoring
+    digest: 499635830c0748b6baa1c7aefc8d109ff6c243c1cc0f215864ca2221bb62124c
+    name: monitoring
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/monitoring-0.0.1/monitoring-0.0.1.tgz
+    version: 0.0.1
+  pbcore-util:
+  - apiVersion: v2
+    appVersion: v2.1
+    created: "2026-03-03T20:45:03.249558409Z"
+    dependencies:
+    - name: app-template
+      repository: https://bjw-s-labs.github.io/helm-charts/
+      version: 4.6.2
+    description: A Helm chart for PBCore Utility Services
+    digest: fd18e593ee839803bdd2d9c99dfb8b0aec4e1cba13c69ad90323fd44bb31b5a9
+    home: https://pbcore.wgbh-mla.org
+    icon: https://pbcore.org/assets/images/pbcore-logo.png
+    keywords:
+    - metadata
+    - pbcore
+    - xml
+    - json
+    maintainers:
+    - email: andrew_myers@wgbh.org
+      name: Andrew Myers
+    - email: ryan_harbert@wgbh.org
+      name: Harpo
+    name: pbcore-util
+    sources:
+    - https://github.com/WGBH-MLA/pbcore-util
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/pbcore-util-0.0.1/pbcore-util-0.0.1.tgz
+    version: 0.0.1
+  stocksales:
+  - apiVersion: v2
+    appVersion: v2.0
+    created: "2026-03-03T20:45:03.458565493Z"
+    dependencies:
+    - name: app-template
+      repository: https://bjw-s-labs.github.io/helm-charts/
+      version: 4.6.2
+    description: A Helm chart for GBH StockSales deployment
+    digest: 68cb9966d0665fe941f6b424219657c2844f5a8bd91a65475f3a6800fdc755e0
+    home: https://gbhstocksales.org
+    keywords:
+    - stock footage
+    - sales
+    - gbh
+    maintainers:
+    - email: henry_neels@wgbh.org
+      name: Henry Neels
+    - email: ryan_harbert@wgbh.org
+      name: Harpo
+    name: stocksales
+    sources:
+    - https://github.com/WGBH-MLA/cluster-deploy
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/stocksales-0.0.1/stocksales-0.0.1.tgz
+    version: 0.0.1
+  traefik:
+  - apiVersion: v2
+    appVersion: v3.5.3
+    created: "2026-03-03T20:45:03.6664656Z"
+    dependencies:
+    - name: traefik
+      repository: https://traefik.github.io/charts
+      version: 37.1.2
+    description: Traefik ingress controller and reverse proxy
+    digest: 091c08d0378d29db3158ffbecc8f06f5efe5c0b175450e82e803121a4ef2ba57
+    name: traefik
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/traefik-0.1.1/traefik-0.1.1.tgz
+    version: 0.1.1
+  whoami:
+  - apiVersion: v2
+    created: "2026-03-03T20:45:03.865173977Z"
+    description: A simple whoami service that responds with the request headers
+    digest: b081da3d0534b642f1eabf5d44be0860961d14c6d7ed44e320302e7606064e7e
+    home: https://github.com/WGBH-MLA/cluster-deploy
+    name: whoami
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/whoami-0.0.1/whoami-0.0.1.tgz
+    version: 0.0.1
+generated: "2026-03-03T20:45:03.865319799Z"
