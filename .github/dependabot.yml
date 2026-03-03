@@ -1,15 +1,30 @@
 # Dependabot configuration
 version: 2
 updates:
-  - package-ecosystem: helm
-    directories: 
-    - '*'
-    schedule:
-      interval: weekly
-      day: wednesday
-      time: '06:00'
-      timezone: US/Eastern
-    commit-message:
-      prefix: ⬆
-    labels:
-      - maintenance 🔧
+# GitHub Actions
+- package-ecosystem: github-actions
+  directory: .github/workflows
+  schedule:
+    interval: weekly
+    day: wednesday
+    time: '06:00'
+    timezone: US/Eastern
+  commit-message:
+    prefix: ⬆
+  labels:
+  - maintenance 🔧
+  - CI 🦾
+
+# Helm charts
+- package-ecosystem: helm
+  directories: 
+  - charts/*
+  schedule:
+    interval: weekly
+    day: wednesday
+    time: '06:00'
+    timezone: US/Eastern
+  commit-message:
+    prefix: ⬆
+  labels:
+  - maintenance 🔧
