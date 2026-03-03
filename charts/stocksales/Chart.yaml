@@ -1,0 +1,21 @@
+apiVersion: v2
+name: stocksales
+description: A Helm chart for GBH StockSales deployment
+version: 0.0.1
+appVersion: v2.0
+dependencies:
+- name: app-template
+  version: 4.6.2
+  repository: https://bjw-s-labs.github.io/helm-charts/
+home: https://gbhstocksales.org
+keywords:
+- stock footage
+- sales
+- gbh
+maintainers:
+- name: Henry Neels
+  email: henry_neels@wgbh.org
+- name: Harpo
+  email: ryan_harbert@wgbh.org
+sources:
+- https://github.com/WGBH-MLA/cluster-deploy
