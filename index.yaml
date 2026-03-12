@@ -671,6 +671,21 @@ entries:
     version: 0.1.0
   monitoring:
   - apiVersion: v2
+    created: "2026-03-12T21:15:05.963098752Z"
+    dependencies:
+    - name: grafana
+      repository: oci://ghcr.io/grafana-community/helm-charts
+      version: 11.3.2
+    - name: prometheus
+      repository: oci://ghcr.io/prometheus-community/charts
+      version: 28.13.0
+    description: A Helm chart for Grafana monitoring
+    digest: c3cc105a709f36487f4bc67e09fa22c1672b6792b15ba48591234847e2d06fe3
+    name: monitoring
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/monitoring-0.2.0/monitoring-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     created: "2026-03-03T20:45:02.99735159Z"
     dependencies:
     - name: grafana
@@ -763,4 +778,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/whoami-0.0.1/whoami-0.0.1.tgz
     version: 0.0.1
-generated: "2026-03-12T21:02:42.989227671Z"
+generated: "2026-03-12T21:15:05.963199171Z"
