@@ -1,9 +1,9 @@
 apiVersion: v2
 name: cert-manager
-version: 0.0.2
-appVersion: v1.18.2
+version: 0.1.0
+appVersion: v1.20.0
 description: A Helm chart for managing cert-manager and SSL certificates
 dependencies:
 - name: cert-manager
-  repository: https://charts.jetstack.io
-  version: 1.18.2
+  repository: oci://quay.io/jetstack/charts
+  version: 1.20.0
