@@ -386,6 +386,20 @@ entries:
     version: 0.1.0
   mla-external-secrets:
   - apiVersion: v2
+    appVersion: v2.1.0
+    created: "2026-03-12T21:02:42.989113887Z"
+    dependencies:
+    - name: external-secrets
+      repository: https://charts.external-secrets.io
+      version: 2.1.0
+    description: Wrapper chart for External Secrets Operator (ESO)
+    digest: 97242bf1435fd039837b9315c75cff617cad76f66b31151a76e9d5a3532d075a
+    name: mla-external-secrets
+    type: application
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/mla-external-secrets-0.3.0/mla-external-secrets-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
     appVersion: v0.20.3
     created: "2026-03-03T20:45:02.795206004Z"
     dependencies:
@@ -749,4 +763,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/whoami-0.0.1/whoami-0.0.1.tgz
     version: 0.0.1
-generated: "2026-03-12T20:12:23.088145176Z"
+generated: "2026-03-12T21:02:42.989227671Z"
