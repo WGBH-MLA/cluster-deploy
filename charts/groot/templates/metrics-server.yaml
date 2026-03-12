@@ -6,12 +6,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/WGBH-MLA/cluster-deploy.git
-    path: charts/monitoring
-    targetRevision: HEAD
+    repoURL: https://kubernetes-sigs.github.io/metrics-server/
+    chart: metrics-server
+    targetRevision: 3.13.0
   destination:
     server: https://kubernetes.default.svc
-    namespace: monitoring
+    namespace: metrics-server
   syncPolicy:
     automated:
       selfHeal: true
