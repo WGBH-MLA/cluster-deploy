@@ -30,6 +30,24 @@ entries:
     version: 0.0.2
   groot:
   - apiVersion: v2
+    created: "2026-03-12T19:18:07.840624903Z"
+    description: A bootstrapped cluster deployment
+    digest: e0108b2b1376f2dfa56f2ff296678ed00f146bbc536d4f4ad64fa3fdca7d0d76
+    home: https://github.com/WGBH-MLA/cluster-deploy
+    keywords:
+    - kubernetes
+    - bootstrap
+    - argo-cd
+    maintainers:
+    - email: ryan_harbert@wgbh.org
+      name: Harpo
+    name: groot
+    sources:
+    - https://github.com/WGBH-MLA/cluster-deploy
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/groot-0.1.1/groot-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     created: "2026-03-12T19:12:47.917040639Z"
     description: A bootstrapped cluster deployment
     digest: 192d1321b3fd74c0f7034653b5fe6424556131c557e950a32b0a227e6399e688
@@ -705,4 +723,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/whoami-0.0.1/whoami-0.0.1.tgz
     version: 0.0.1
-generated: "2026-03-12T19:12:47.917209075Z"
+generated: "2026-03-12T19:18:07.840729279Z"
