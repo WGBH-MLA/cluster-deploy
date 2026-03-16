@@ -4,7 +4,7 @@ traefik:
       prometheus.io/path: /metrics
       prometheus.io/port: '9100'
       prometheus.io/scrape: 'true'
-      prometheus.io/collectionInterval: 5s
+      prometheus.io/collectionInterval: 15s
 
   experimental:
     plugins:
@@ -62,11 +62,12 @@ traefik:
 
   ports:
     web:
-      redirections:
-        entryPoint:
-          permanent: true
-          scheme: https
-          to: websecure
+      http:
+        redirections:
+          entryPoint:
+            permanent: true
+            scheme: https
+            to: websecure
     websecure:
       allowACMEByPass: true
 
