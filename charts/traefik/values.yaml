@@ -10,10 +10,10 @@ traefik:
     plugins:
       captcha-protect:
         moduleName: github.com/libops/captcha-protect
-        version: v1.12.0
+        version: v1.12.1
       simple-cache:
         moduleName: github.com/ciaranj/cacheify
-        version: v0.0.7
+        version: v0.0.8
 
   ingressRoute:
     dashboard:
@@ -41,18 +41,18 @@ traefik:
     addInternals: true
     serviceName: traefik
     safeQueryParams:
-      - q
-      - f[access_types][]
-      - f[producing_organizations][]
-      - f[media_type][]
-      - f[generes][]
-      - f[topics][]
-      - f[asset_type][]
-      - f[contributing_organizations][]
-      - f[producing_organizations][]
-      - exact_or_range
-      - after_date
-      - before_date
+    - q
+    - f[access_types][]
+    - f[producing_organizations][]
+    - f[media_type][]
+    - f[generes][]
+    - f[topics][]
+    - f[asset_type][]
+    - f[contributing_organizations][]
+    - f[producing_organizations][]
+    - exact_or_range
+    - after_date
+    - before_date
     otlp:
       enabled: true
       grpc:
