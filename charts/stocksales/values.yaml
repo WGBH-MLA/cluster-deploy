@@ -1,3 +1,5 @@
+global:
+  host: stocksales.dev.wgbh-mla.org
 app-template:
   controllers:
     main:
@@ -54,7 +56,7 @@ app-template:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
       hosts:
-      - host: stocksales.dev.wgbh-mla.org
+      - host: '{{ .Values.global.host }}'
         paths:
         - path: /
           service:
@@ -62,4 +64,4 @@ app-template:
       tls:
       - secretName: stocksales-tls
         hosts:
-        - stocksales.dev.wgbh-mla.org
+        - '{{ .Values.global.host }}'

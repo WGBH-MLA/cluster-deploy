@@ -1,7 +1,7 @@
 apiVersion: v2
 name: stocksales
 description: A Helm chart for GBH StockSales deployment
-version: 0.0.1
+version: 0.1.0
 appVersion: v2.0
 dependencies:
 - name: app-template
