@@ -731,6 +731,31 @@ entries:
   stocksales:
   - apiVersion: v2
     appVersion: v2.0
+    created: "2026-03-17T16:56:38.499037827Z"
+    dependencies:
+    - name: app-template
+      repository: https://bjw-s-labs.github.io/helm-charts/
+      version: 4.6.2
+    description: A Helm chart for GBH StockSales deployment
+    digest: ee373cb9e2f6748b5c1f6fcb4dc17e1d0f5b7b9c63c75254d1fc99aab3044963
+    home: https://gbhstocksales.org
+    keywords:
+    - stock footage
+    - sales
+    - gbh
+    maintainers:
+    - email: henry_neels@wgbh.org
+      name: Henry Neels
+    - email: ryan_harbert@wgbh.org
+      name: Harpo
+    name: stocksales
+    sources:
+    - https://github.com/WGBH-MLA/cluster-deploy
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/stocksales-0.1.1/stocksales-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: v2.0
     created: "2026-03-16T16:12:49.790786041Z"
     dependencies:
     - name: app-template
@@ -829,4 +854,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/whoami-0.0.1/whoami-0.0.1.tgz
     version: 0.0.1
-generated: "2026-03-16T20:37:11.524980424Z"
+generated: "2026-03-17T16:56:38.499145416Z"
