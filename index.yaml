@@ -30,6 +30,19 @@ entries:
   cert-manager:
   - apiVersion: v2
     appVersion: v1.20.0
+    created: "2026-03-17T21:44:39.109145394Z"
+    dependencies:
+    - name: cert-manager
+      repository: oci://quay.io/jetstack/charts
+      version: 1.20.0
+    description: A Helm chart for managing cert-manager and SSL certificates
+    digest: 94a352a0246408e9583acd3d980f82ce16468f9c3c45effad6c448b4cd4d44e2
+    name: cert-manager
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/cert-manager-0.2.1/cert-manager-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
+    appVersion: v1.20.0
     created: "2026-03-17T21:34:07.037317572Z"
     dependencies:
     - name: cert-manager
@@ -867,4 +880,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/whoami-0.0.1/whoami-0.0.1.tgz
     version: 0.0.1
-generated: "2026-03-17T21:34:07.03743941Z"
+generated: "2026-03-17T21:44:39.109267662Z"
