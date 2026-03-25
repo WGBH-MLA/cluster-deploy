@@ -1,0 +1,16 @@
+# Extra ingress configuration for gbhstocksales.org
+app-template:
+  ingress:
+    gbhstocksales:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production-http
+      hosts:
+      - host: gbhstocksales.org
+        paths:
+        - path: /
+          service:
+            identifier: main
+      tls:
+      - secretName: gbhstocksales-tls
+        hosts:
+        - gbhstocksales.org
