@@ -141,6 +141,20 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/kibana-stack-0.1.0/kibana-stack-0.1.0.tgz
     version: 0.1.0
+  metaflow:
+  - apiVersion: v2
+    appVersion: v2.4.13
+    created: "2026-04-08T17:24:09.862289131Z"
+    dependencies:
+    - name: metaflow
+      repository: https://outerbounds.github.io/metaflow-tools
+      version: 0.1.3
+    description: ML + AI workflow framework for data scientists
+    digest: 119aa28f2bafdf19ad483cd8ad7391190f2563eb5925a0eac3a530c166d050c4
+    name: metaflow
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/metaflow-0.1.0/metaflow-0.1.0.tgz
+    version: 0.1.0
   mla-eck-elasticsearch:
   - apiVersion: v2
     appVersion: 9.1.2
@@ -923,4 +937,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/whoami-0.0.1/whoami-0.0.1.tgz
     version: 0.0.1
-generated: "2026-04-03T18:08:31.748197705Z"
+generated: "2026-04-08T17:24:09.86240688Z"
