@@ -1,0 +1,9 @@
+apiVersion: v2
+name: metaflow
+version: 0.1.0
+appVersion: v2.4.13
+description: ML + AI workflow framework for data scientists
+dependencies:
+- name: metaflow
+  repository: https://outerbounds.github.io/metaflow-tools
+  version: 0.1.3

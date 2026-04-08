@@ -1,0 +1,5 @@
+metaflow:
+  metaflow-ui:
+    ingress:
+      hosts:
+      - host: metaflow.dev.wgbh-mla.org
