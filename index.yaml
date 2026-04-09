@@ -144,6 +144,22 @@ entries:
   metaflow:
   - apiVersion: v2
     appVersion: v2.4.13
+    created: "2026-04-09T19:00:15.491449822Z"
+    dependencies:
+    - name: metaflow
+      repository: https://outerbounds.github.io/metaflow-tools
+      version: 0.1.3
+    - name: cluster
+      repository: https://cloudnative-pg.github.io/charts
+      version: 0.6.0
+    description: ML + AI workflow framework for data scientists
+    digest: 7bda61c4fa345623c1f94111e69d2191bef192d22c37189945bfb2704fdce421
+    name: metaflow
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/metaflow-0.2.0/metaflow-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: v2.4.13
     created: "2026-04-08T17:24:09.862289131Z"
     dependencies:
     - name: metaflow
@@ -937,4 +953,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/whoami-0.0.1/whoami-0.0.1.tgz
     version: 0.0.1
-generated: "2026-04-08T17:24:09.86240688Z"
+generated: "2026-04-09T19:00:15.491543978Z"
