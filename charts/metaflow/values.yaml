@@ -3,3 +3,11 @@ metaflow:
     ingress:
       hosts:
       - host: metaflow.dev.wgbh-mla.org
+  postgresql:
+    enabled: false
+cluster:
+  cluster:
+    instances: 1
+    initdb:
+      database: metaflow
+      owner: metaflow
