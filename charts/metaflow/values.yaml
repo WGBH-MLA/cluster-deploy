@@ -1,10 +1,19 @@
 metaflow:
   metaflow-ui:
     ingress:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
       hosts:
       - host: metaflow.dev.wgbh-mla.org
+      tls:
+      - hosts:
+        - metaflow.dev.wgbh-mla.org
+        secretName: metaflow-ui-tls
+    uiBackend:
+      metaflowServiceURL: https://metaflow.dev.wgbh-mla.org/api
   postgresql:
     enabled: false
+    
 cluster:
   cluster:
     instances: 1
