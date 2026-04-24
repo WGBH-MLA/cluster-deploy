@@ -80,6 +80,28 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/cert-manager-0.0.2/cert-manager-0.0.2.tgz
     version: 0.0.2
+  chowda:
+  - apiVersion: v2
+    appVersion: v0.5.0
+    created: "2026-04-24T19:41:24.024653802Z"
+    dependencies:
+    - name: app-template
+      repository: https://bjw-s-labs.github.io/helm-charts
+      version: 4.6.2
+    description: Helm chart for Chowda
+    digest: 209f785b41c8792ed28e215a4209514c319b1158b950f9a15f4ec23081dbb097
+    keywords:
+    - clams
+    - metadata
+    maintainers:
+    - email: ryan_harbert@wgbh.org
+      name: Harpo
+    name: chowda
+    sources:
+    - https://github.com/WGBH-MLA/cluster-deploy
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/chowda-0.1.0/chowda-0.1.0.tgz
+    version: 0.1.0
   groot:
   - apiVersion: v2
     created: "2026-03-12T19:18:07.840624903Z"
@@ -985,4 +1007,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/whoami-0.0.1/whoami-0.0.1.tgz
     version: 0.0.1
-generated: "2026-04-13T17:30:38.904675685Z"
+generated: "2026-04-24T19:41:24.024754661Z"
