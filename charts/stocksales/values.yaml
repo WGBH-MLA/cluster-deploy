@@ -1,6 +1,6 @@
 global:
   host: stocksales.dev.wgbh-mla.org
-  clusterIssuer: null
+  clusterIssuer: letsencrypt-production
 app-template:
   controllers:
     main:
@@ -55,7 +55,7 @@ app-template:
   ingress:
     main:
       annotations:
-        cert-manager.io/cluster-issuer: '{{ .Values.global.clusterIssuer | default "letsencrypt-production" }}'
+        cert-manager.io/cluster-issuer: '{{ .Values.global.clusterIssuer }}'
       hosts:
       - host: '{{ .Values.global.host }}'
         paths:
