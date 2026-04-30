@@ -859,6 +859,27 @@ entries:
   rustfs:
   - apiVersion: v2
     appVersion: v1.0.0-beta1
+    created: "2026-04-30T20:41:37.993292935Z"
+    dependencies:
+    - name: rustfs
+      repository: https://charts.rustfs.com
+      version: 0.1.0
+    description: Helm chart for RuftFS
+    digest: 8494e1a4ec81bc59e005f3856b5ab2b462dc4ed17dfacc4b667fa59785457c94
+    keywords:
+    - s3
+    - storage
+    maintainers:
+    - email: ryan_harbert@wgbh.org
+      name: Harpo
+    name: rustfs
+    sources:
+    - https://github.com/WGBH-MLA/cluster-deploy
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/rustfs-0.0.2/rustfs-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: v1.0.0-beta1
     created: "2026-04-30T20:24:59.40538746Z"
     dependencies:
     - name: rustfs
@@ -1054,4 +1075,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/whoami-0.0.1/whoami-0.0.1.tgz
     version: 0.0.1
-generated: "2026-04-30T20:24:59.405529447Z"
+generated: "2026-04-30T20:41:37.993453713Z"
