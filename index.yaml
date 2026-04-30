@@ -856,6 +856,28 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/pbcore-util-0.0.1/pbcore-util-0.0.1.tgz
     version: 0.0.1
+  rustfs:
+  - apiVersion: v2
+    appVersion: v1.0.0-beta1
+    created: "2026-04-30T20:24:59.40538746Z"
+    dependencies:
+    - name: rustfs
+      repository: https://charts.rustfs.com
+      version: 0.1.0
+    description: Helm chart for RuftFS
+    digest: eab21961d91fc1e18a3713811afa916118c5b2293ef21c2a1f96bff4c2bacbb9
+    keywords:
+    - s3
+    - storage
+    maintainers:
+    - email: ryan_harbert@wgbh.org
+      name: Harpo
+    name: rustfs
+    sources:
+    - https://github.com/WGBH-MLA/cluster-deploy
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/rustfs-0.0.1/rustfs-0.0.1.tgz
+    version: 0.0.1
   stocksales:
   - apiVersion: v2
     appVersion: v2.0
@@ -1032,4 +1054,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/whoami-0.0.1/whoami-0.0.1.tgz
     version: 0.0.1
-generated: "2026-04-28T21:02:29.460093866Z"
+generated: "2026-04-30T20:24:59.405529447Z"
