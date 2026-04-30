@@ -1,0 +1,17 @@
+apiVersion: v2
+name: rustfs
+version: 0.0.1
+appVersion: v1.0.0-beta1
+description: Helm chart for RuftFS
+dependencies:
+- name: rustfs
+  version: 0.1.0
+  repository: https://charts.rustfs.com
+keywords:
+- s3
+- storage
+maintainers:
+- name: Harpo
+  email: ryan_harbert@wgbh.org
+sources:
+- https://github.com/WGBH-MLA/cluster-deploy

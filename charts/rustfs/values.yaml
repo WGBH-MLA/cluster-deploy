@@ -1,0 +1,15 @@
+rustfs:
+  mode:
+    standalone:
+      enabled: true
+    distributed:
+      enabled: false
+  ingress:
+    className: traefik
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-production
+    hosts:
+    - host: s3.dev.wgbh-mla.org
+      paths:
+      - path: /
+        pathType: Prefix
