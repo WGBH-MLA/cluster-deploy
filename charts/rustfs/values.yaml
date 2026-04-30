@@ -13,3 +13,10 @@ rustfs:
       paths:
       - path: /
         pathType: Prefix
+    tls:
+      enabled: true
+  storageclass:
+    name: efs-sc
+  secret:
+    rustfs:
+      access_key: admin
