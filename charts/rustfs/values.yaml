@@ -15,6 +15,9 @@ rustfs:
         pathType: Prefix
     tls:
       enabled: true
+      existingSecret:
+        enabled: true
+        name: rustfs-ingress-tls
   storageclass:
     name: efs-sc
   secret:
