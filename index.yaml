@@ -27,6 +27,20 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/argo-cd-0.2.2/argo-cd-0.2.2.tgz
     version: 0.2.2
+  argo-events:
+  - apiVersion: v2
+    appVersion: v1.9.10
+    created: "2026-05-06T17:36:34.784704683Z"
+    dependencies:
+    - name: argo-events
+      repository: https://argoproj.github.io/argo-helm
+      version: 2.4.21
+    description: Event-driven automation for Kubernetes with Argo Events
+    digest: 8d5ff554f38b082e257b0fc6dfb9e8aac3f49740b6801c83923618f988c0d07a
+    name: argo-events
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/argo-events-0.1.0/argo-events-0.1.0.tgz
+    version: 0.1.0
   cert-manager:
   - apiVersion: v2
     appVersion: v1.20.0
@@ -859,6 +873,27 @@ entries:
   rustfs:
   - apiVersion: v2
     appVersion: v1.0.0-beta1
+    created: "2026-05-06T17:36:34.974147588Z"
+    dependencies:
+    - name: rustfs
+      repository: https://charts.rustfs.com
+      version: 0.1.0
+    description: Helm chart for RuftFS
+    digest: 73232e6ebc362f71ed6cb3b18d4b587b4461163eb6b9134f222ef57b9f6669ba
+    keywords:
+    - s3
+    - storage
+    maintainers:
+    - email: ryan_harbert@wgbh.org
+      name: Harpo
+    name: rustfs
+    sources:
+    - https://github.com/WGBH-MLA/cluster-deploy
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/rustfs-0.0.4/rustfs-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
+    appVersion: v1.0.0-beta1
     created: "2026-05-06T17:32:32.707417947Z"
     dependencies:
     - name: rustfs
@@ -1096,4 +1131,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/whoami-0.0.1/whoami-0.0.1.tgz
     version: 0.0.1
-generated: "2026-05-06T17:32:32.707550965Z"
+generated: "2026-05-06T17:36:34.9742881Z"
