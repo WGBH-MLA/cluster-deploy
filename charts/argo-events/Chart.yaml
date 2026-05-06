@@ -1,0 +1,9 @@
+apiVersion: v2
+name: argo-events
+version: 0.1.0
+appVersion: v1.9.10
+description: Event-driven automation for Kubernetes with Argo Events
+dependencies:
+- name: argo-events
+  repository: https://argoproj.github.io/argo-helm
+  version: 2.4.21
