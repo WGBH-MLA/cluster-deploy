@@ -2,6 +2,22 @@ apiVersion: v1
 entries:
   argo-cd:
   - apiVersion: v2
+    appVersion: v3.4.4
+    created: "2026-06-22T20:09:40.168232681Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 9.7.0
+    - name: argocd-image-updater
+      repository: oci://ghcr.io/argoproj/argo-helm
+      version: 1.1.4
+    description: Application management and continuous deployment with Argo CD
+    digest: 34a802d9b50997ddbf72e5db566d82de5029e685d958ecf2e9156bd4170723b8
+    name: argo-cd
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/argo-cd-0.3.1/argo-cd-0.3.1.tgz
+    version: 0.3.1
+  - apiVersion: v2
     appVersion: v3.3.3
     created: "2026-03-12T20:12:23.08806822Z"
     dependencies:
@@ -1131,4 +1147,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/whoami-0.0.1/whoami-0.0.1.tgz
     version: 0.0.1
-generated: "2026-05-06T17:36:34.9742881Z"
+generated: "2026-06-22T20:09:40.168326433Z"
