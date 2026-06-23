@@ -1,0 +1,52 @@
+global:
+  host: dev.wgbh-mla.org
+
+hyrax:
+  image:
+    repository: ghcr.io/wgbh-mla/ams
+    tag: d331bb3d
+  fcrepo:
+    enabled: false
+  postgresql:
+    enabled: false
+  worker:
+    image:
+      repository: ghcr.io/samvera/hyku/worker
+      tag: 7b081416
+
+app-template:
+  ingress:
+    ams:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      hosts:
+        - host: "{{ .Release.Name }}.{{ .Values.global.host }}"
+          paths:
+            - path: /
+              service:
+                name: ams-demo-hyrax
+                port: 80
+      tls:
+        - secretName: "{{ .Release.Name }}-tls"
+          hosts:
+            - "{{ .Release.Name }}.{{ .Values.global.host }}"
+  rawResources:
+    db-cluster:
+      apiVersion: postgresql.cnpg.io/v1
+      kind: Cluster
+      spec:
+        spec:
+          name: ams-db-cluster
+          instances: 1
+          storage:
+            size: 10Gi
+            storageClass: ebs-gp3-4
+    database:
+      apiVersion: postgresql.cnpg.io/v1
+      kind: Database
+      spec:
+        spec:
+          name: ams
+          owner: app
+          cluster:
+            name: ams-db-cluster
