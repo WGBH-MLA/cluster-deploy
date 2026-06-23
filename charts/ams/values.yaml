@@ -32,21 +32,23 @@ app-template:
             - "{{ .Release.Name }}.{{ .Values.global.host }}"
   rawResources:
     db-cluster:
-      apiVersion: postgresql.cnpg.io/v1
-      kind: Cluster
-      spec:
+      manifest:
+        apiVersion: postgresql.cnpg.io/v1
+        kind: Cluster
         spec:
-          name: ams-db-cluster
-          instances: 1
-          storage:
-            size: 10Gi
-            storageClass: ebs-gp3-4
-    database:
-      apiVersion: postgresql.cnpg.io/v1
-      kind: Database
-      spec:
-        spec:
-          name: ams
-          owner: app
-          cluster:
+          spec:
             name: ams-db-cluster
+            instances: 1
+            storage:
+              size: 10Gi
+              storageClass: ebs-gp3-4
+    database:
+      manifest:
+        apiVersion: postgresql.cnpg.io/v1
+        kind: Database
+        spec:
+          spec:
+            name: ams
+            owner: app
+            cluster:
+              name: ams-db-cluster
