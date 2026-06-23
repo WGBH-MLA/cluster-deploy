@@ -9,10 +9,26 @@ hyrax:
     enabled: false
   postgresql:
     enabled: false
+  extraEnvVars:
+    - name: DB_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: ams-demo-db-cluster-app
+          key: password
+  externalPostgresql:
+    username: app
+    database: app
+    host: ams-demo-db-cluster-rw
   worker:
     image:
       repository: ghcr.io/samvera/hyku/worker
       tag: 7b081416
+      extraEnvVars:
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: ams-demo-db-cluster-app
+              key: password
 
 app-template:
   ingress:
