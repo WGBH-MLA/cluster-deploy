@@ -6,4 +6,4 @@ appVersion: r336
 dependencies:
 - name: mimir-distributed
   repository: https://grafana.github.io/helm-charts
-  version: 5.8.0-weekly.336
+  version: 6.0.5
