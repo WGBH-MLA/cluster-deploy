@@ -52,20 +52,18 @@ app-template:
         apiVersion: postgresql.cnpg.io/v1
         kind: Cluster
         spec:
-          spec:
-            name: ams-db-cluster
-            instances: 1
-            imageName: ghcr.io/cloudnative-pg/postgresql:14.10
-            storage:
-              size: 10Gi
-              storageClass: ebs-gp3-4
+          name: ams-db-cluster
+          instances: 1
+          imageName: ghcr.io/cloudnative-pg/postgresql:14.10
+          storage:
+            size: 10Gi
+            storageClass: ebs-gp3-4
     database:
       manifest:
         apiVersion: postgresql.cnpg.io/v1
         kind: Database
         spec:
-          spec:
-            name: ams
-            owner: app
-            cluster:
-              name: ams-db-cluster
+          name: ams
+          owner: app
+          cluster:
+            name: ams-db-cluster
