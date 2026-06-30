@@ -55,6 +55,7 @@ app-template:
           spec:
             name: ams-db-cluster
             instances: 1
+            imageName: ghcr.io/cloudnative-pg/postgresql:14.10
             storage:
               size: 10Gi
               storageClass: ebs-gp3-4
