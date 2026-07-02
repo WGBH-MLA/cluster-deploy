@@ -4,32 +4,25 @@ global:
 hyrax:
   image:
     repository: ghcr.io/wgbh-mla/ams
-    tag: d331bb3d
+    tag: 312b6eca
   fcrepo:
     enabled: false
+  externalFcrepoHost: fcrepo
   postgresql:
-    enabled: false
-  extraEnvVars:
-    - name: DB_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: ams-demo-db-cluster-app
-          key: password
-  externalPostgresql:
-    username: app
-    database: app
-    host: ams-demo-db-cluster-rw
+    enabled: true
+    image:
+      repository: ghcr.io/cloudnative-pg/postgresql
+      tag: 18
   worker:
+    enabled: true
     image:
       repository: ghcr.io/samvera/hyku/worker
       tag: 7b081416
-      extraEnvVars:
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: ams-demo-db-cluster-app
-              key: password
-
+  # extraEnvFrom:
+  #   - configMapRef:
+  #       name: ams-demo-hyrax
+  #   - secretRef:
+  #       name: existingSecret
 app-template:
   ingress:
     ams:
@@ -46,24 +39,3 @@ app-template:
         - secretName: "{{ .Release.Name }}-tls"
           hosts:
             - "{{ .Release.Name }}.{{ .Values.global.host }}"
-  rawResources:
-    db-cluster:
-      manifest:
-        apiVersion: postgresql.cnpg.io/v1
-        kind: Cluster
-        spec:
-          name: ams-db-cluster
-          instances: 1
-          imageName: ghcr.io/cloudnative-pg/postgresql:14.10
-          storage:
-            size: 10Gi
-            storageClass: ebs-gp3-4
-    database:
-      manifest:
-        apiVersion: postgresql.cnpg.io/v1
-        kind: Database
-        spec:
-          name: ams
-          owner: app
-          cluster:
-            name: ams-db-cluster
