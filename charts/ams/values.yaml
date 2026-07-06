@@ -7,12 +7,9 @@ hyrax:
     tag: 312b6eca
   fcrepo:
     enabled: false
-  externalFcrepoHost: fcrepo
+  externalFcrepoHost: ams-db-cluster-rw
   postgresql:
-    enabled: true
-    image:
-      repository: postgres
-      tag: 18
+    enabled: false
   worker:
     enabled: true
     image:
@@ -39,3 +36,24 @@ app-template:
         - secretName: "{{ .Release.Name }}-tls"
           hosts:
             - "{{ .Release.Name }}.{{ .Values.global.host }}"
+  rawResources:
+    db-cluster:
+      manifest:
+        apiVersion: postgresql.cnpg.io/v1
+        kind: Cluster
+        spec:
+          name: ams-db-cluster
+          instances: 1
+          imageName: ghcr.io/cloudnative-pg/postgresql:14.10
+          storage:
+            size: 10Gi
+            storageClass: ebs-gp3-4
+    database:
+      manifest:
+        apiVersion: postgresql.cnpg.io/v1
+        kind: Database
+        spec:
+          name: ams
+          owner: app
+          cluster:
+            name: ams-db-cluster
