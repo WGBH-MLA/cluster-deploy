@@ -11,14 +11,14 @@ hyrax:
   postgresql:
     enabled: false
   externalPostgresql:
-    host: ams-db-cluster-rw
-    username: ams
-    database: app
+    host: ams-demo-db-cluster-rw
+    username: app
+    database: ams
     # password: 
   global:
     postgresql:
       auth:
-        username: ams
+        username: app
         # password: 
   worker:
     enabled: true
@@ -54,7 +54,7 @@ app-template:
         spec:
           name: ams-db-cluster
           instances: 1
-          imageName: ghcr.io/cloudnative-pg/postgresql:14.10
+          imageName: ghcr.io/cloudnative-pg/postgresql:18
           storage:
             size: 10Gi
             storageClass: ebs-gp3-4
