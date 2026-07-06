@@ -7,7 +7,7 @@ hyrax:
     tag: 312b6eca
   fcrepo:
     enabled: false
-  externalFcrepoHost: ams-db-cluster-rw
+  skipDbMigrateSeed: true
   postgresql:
     enabled: false
   externalPostgresql:
@@ -15,11 +15,6 @@ hyrax:
     username: app
     database: ams
     # password: 
-  global:
-    postgresql:
-      auth:
-        username: app
-        # password: 
   worker:
     enabled: true
     image:
