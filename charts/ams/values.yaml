@@ -10,6 +10,16 @@ hyrax:
   externalFcrepoHost: ams-db-cluster-rw
   postgresql:
     enabled: false
+  externalPostgresql:
+    host: ams-db-cluster-rw
+    username: ams
+    database: app
+    # password: 
+  global:
+    postgresql:
+      auth:
+        username: ams
+        # password: 
   worker:
     enabled: true
     image:
