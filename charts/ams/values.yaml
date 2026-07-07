@@ -37,10 +37,7 @@ hyrax:
   startupProbe:
     enabled: true
     initialDelaySeconds: 30
-  livenessProbe:
-    initialDelaySeconds: 30
-  readinessProbe:
-    initialDelaySeconds: 30
+    failureThreshold: 30
 
 app-template:
   ingress:
