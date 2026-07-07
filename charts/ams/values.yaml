@@ -25,6 +25,15 @@ hyrax:
   #       name: ams-demo-hyrax
   #   - secretRef:
   #       name: existingSecret
+  brandingVolume:
+    existingClaim: ams-demo-branding
+  derivativesVolume:
+    existingClaim: ams-demo-derivatives
+  uploadsVolume:
+    existingClaim: ams-demo-uploads  
+  solr:
+    collectionReplicas: 1
+
 app-template:
   ingress:
     ams:
@@ -41,6 +50,19 @@ app-template:
         - secretName: "{{ .Release.Name }}-tls"
           hosts:
             - "{{ .Release.Name }}.{{ .Values.global.host }}"
+  persistence:
+    branding:
+      type: persistentVolumeClaim
+      accessMode: ReadWriteMany
+      size: 1Gi
+    derivatives:
+      type: persistentVolumeClaim
+      accessMode: ReadWriteMany
+      size: 1Gi
+    uploads:
+      type: persistentVolumeClaim
+      accessMode: ReadWriteMany
+      size: 1Gi
   rawResources:
     db-cluster:
       manifest:
