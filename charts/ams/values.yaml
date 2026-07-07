@@ -4,10 +4,11 @@ global:
 hyrax:
   image:
     repository: ghcr.io/wgbh-mla/ams
-    tag: 312b6eca
+    tag: cc78e9a7
   fcrepo:
     enabled: false
   skipDbMigrateSeed: true
+  loadSolrConfigSet: false
   postgresql:
     enabled: false
   externalPostgresql:
@@ -18,8 +19,8 @@ hyrax:
   worker:
     enabled: true
     image:
-      repository: ghcr.io/samvera/hyku/worker
-      tag: 7b081416
+      repository: ghcr.io/wgbh-mla/ams/worker
+      tag: cc78e9a7
   # extraEnvFrom:
   #   - configMapRef:
   #       name: ams-demo-hyrax
