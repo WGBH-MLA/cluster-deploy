@@ -36,6 +36,7 @@ hyrax:
     collectionReplicas: 1
   startupProbe:
     enabled: true
+    initialDelaySeconds: 30
   livenessProbe:
     initialDelaySeconds: 30
   readinessProbe:
