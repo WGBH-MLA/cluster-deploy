@@ -1,14 +1,14 @@
 apiVersion: v2
 name: monitoring
 description: A Helm chart for Grafana monitoring
-version: 0.3.0
+version: 0.4.0
 dependencies:
 - name: grafana
   repository: oci://ghcr.io/grafana-community/helm-charts
-  version: 11.3.3
+  version: 12.10.4
 - name: prometheus
   repository: oci://ghcr.io/prometheus-community/charts
-  version: 28.13.0
+  version: 29.23.1
 - name: loki
   repository: oci://ghcr.io/grafana-community/helm-charts
-  version: 6.57.0
+  version: 18.7.6
