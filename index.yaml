@@ -1121,6 +1121,19 @@ entries:
   traefik:
   - apiVersion: v2
     appVersion: v3.6.10
+    created: "2026-08-13T22:20:24.273737421Z"
+    dependencies:
+    - name: traefik
+      repository: https://traefik.github.io/charts
+      version: 41.2.0
+    description: Traefik ingress controller and reverse proxy
+    digest: dc27b74f8a79265612d2d25265b34c6de9d2b7e34ab82b483496c88bd2cce8d9
+    name: traefik
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/traefik-0.3.0/traefik-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
+    appVersion: v3.6.10
     created: "2026-03-16T20:37:11.524889875Z"
     dependencies:
     - name: traefik
@@ -1168,4 +1181,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/whoami-0.0.1/whoami-0.0.1.tgz
     version: 0.0.1
-generated: "2026-08-11T22:26:03.099140068Z"
+generated: "2026-08-13T22:20:24.273866189Z"
