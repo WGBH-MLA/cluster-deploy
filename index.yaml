@@ -73,6 +73,23 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/argo-events-0.1.0/argo-events-0.1.0.tgz
     version: 0.1.0
+  authentik:
+  - apiVersion: v2
+    appVersion: 2026.2.2
+    created: "2026-08-17T21:37:55.004118061Z"
+    dependencies:
+    - name: authentik
+      repository: https://charts.goauthentik.io
+      version: 2026.2.2
+    - name: cluster
+      repository: https://cloudnative-pg.github.io/charts
+      version: 0.6.0
+    description: A Helm chart for managing Authentik identity provider
+    digest: f4059b6547ec0b6adacc83e5073d2b66ce8bd5bd76b2e8ca042d1aa71b555f57
+    name: authentik
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/authentik-0.1.0/authentik-0.1.0.tgz
+    version: 0.1.0
   cert-manager:
   - apiVersion: v2
     appVersion: v1.21.1
@@ -1210,4 +1227,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/whoami-0.0.1/whoami-0.0.1.tgz
     version: 0.0.1
-generated: "2026-08-17T21:20:52.61213358Z"
+generated: "2026-08-17T21:37:55.004264265Z"
