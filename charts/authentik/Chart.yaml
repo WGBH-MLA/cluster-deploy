@@ -1,0 +1,12 @@
+apiVersion: v2
+name: authentik
+version: 0.1.0
+appVersion: 2026.2.2
+description: A Helm chart for managing Authentik identity provider
+dependencies:
+- name: authentik
+  repository: https://charts.goauthentik.io
+  version: 2026.2.2
+- name: cluster
+  repository: https://cloudnative-pg.github.io/charts
+  version: 0.6.0
