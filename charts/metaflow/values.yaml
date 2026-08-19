@@ -1,5 +1,7 @@
 metaflow:
   metaflow-service:
+    image:
+      tag: v2.5.1
     ingress:
       enabled: true
       annotations:
@@ -14,6 +16,8 @@ metaflow:
         - meta.dev.wgbh-mla.org
         secretName: metaflow-service-tls
   metaflow-ui:
+    image:
+      tag: v2.5.1
     ingress:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
@@ -28,6 +32,9 @@ metaflow:
       env:
       - name: METAFLOW_SERVICE
         value: https://meta.dev.wgbh-mla.org
+    uiStatic:
+      image:
+        tag: v1.3.14
   postgresql:
     enabled: false
     
