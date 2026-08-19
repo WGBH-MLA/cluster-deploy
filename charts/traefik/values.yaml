@@ -90,6 +90,10 @@ traefik:
   service:
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
+      # Register Traefik pods (not nodes) as NLB targets so a zonal front-end reaches
+      # a ready pod in any AZ; instance targets + Local health-gate nodes and black-hole
+      # a zone whose node has no ready Traefik pod. Client IP stays via NLB + proxy protocol.
+      service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
       # Let either zonal NLB node reach targets in the other AZ so connections
       # are not black-holed when a zone has no ready Traefik pod.
       service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: 'true'
