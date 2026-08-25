@@ -1,9 +1,9 @@
 apiVersion: v2
 name: traefik
-version: 0.3.0
-appVersion: v3.6.10
+version: 0.4.0
+appVersion: v3.7.11
 description: Traefik ingress controller and reverse proxy
 dependencies:
 - name: traefik
   repository: https://traefik.github.io/charts
-  version: 41.2.0
+  version: 41.3.0
