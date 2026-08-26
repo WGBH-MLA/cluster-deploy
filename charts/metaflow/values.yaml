@@ -1,20 +1,4 @@
 metaflow:
-  metaflow-ui:
-    ingress:
-      enabled: true
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
-        traefik.ingress.kubernetes.io/router.middlewares: metaflow-authentik-metaflow-proxy@kubernetescrd
-      hosts:
-      - host: metaflow.dev.wgbh-mla.org
-      tls:
-      - hosts:
-        - metaflow.dev.wgbh-mla.org
-        secretName: metaflow-ui-tls
-    uiBackend:
-      metaflowServiceURL: https://meta.dev.wgbh-mla.org
-    uiStatic:
-      metaflowUIBackendURL: https://meta.dev.wgbh-mla.org/api/
   postgresql:
     enabled: false
     
