@@ -1,6 +1,6 @@
 apiVersion: v2
 name: metaflow
-version: 0.2.2
+version: 0.3.0
 appVersion: v2.4.13
 description: ML + AI workflow framework for data scientists
 dependencies:
@@ -10,3 +10,6 @@ dependencies:
 - name: cluster
   repository: https://cloudnative-pg.github.io/charts
   version: 0.6.0
+- name: app-template
+  repository: https://bjw-s-labs.github.io/helm-charts
+  version: 5.1.0
