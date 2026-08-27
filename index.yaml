@@ -75,6 +75,22 @@ entries:
     version: 0.1.0
   authentik:
   - apiVersion: v2
+    appVersion: 2026.5.6
+    created: "2026-08-27T22:50:40.255003559Z"
+    dependencies:
+    - name: authentik
+      repository: https://charts.goauthentik.io
+      version: 2026.5.6
+    - name: cluster
+      repository: https://cloudnative-pg.github.io/charts
+      version: 0.6.0
+    description: A Helm chart for managing Authentik identity provider
+    digest: 79406e5adfbf6cb74b121937caf931cc4566344b37c69c03f096d4728aa7bde3
+    name: authentik
+    urls:
+    - https://github.com/WGBH-MLA/cluster-deploy/releases/download/authentik-0.2.0/authentik-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     appVersion: 2026.2.2
     created: "2026-08-17T21:37:55.004118061Z"
     dependencies:
@@ -1266,4 +1282,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/cluster-deploy/releases/download/whoami-0.0.1/whoami-0.0.1.tgz
     version: 0.0.1
-generated: "2026-08-26T17:03:36.352989898Z"
+generated: "2026-08-27T22:50:40.255152965Z"
