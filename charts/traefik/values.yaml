@@ -77,8 +77,25 @@ traefik:
     kubernetesIngress:
       allowExternalNameServices: true
 
+  # Keep one replica per AZ so every zonal NLB node has a local ready endpoint
+  # (required because service.spec.externalTrafficPolicy is Local).
+  topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: topology.kubernetes.io/zone
+      whenUnsatisfiable: ScheduleAnyway
+      labelSelector:
+        matchLabels:
+          app.kubernetes.io/name: traefik
+
   service:
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
+      # Register Traefik pods (not nodes) as NLB targets so a zonal front-end reaches
+      # a ready pod in any AZ; instance targets + Local health-gate nodes and black-hole
+      # a zone whose node has no ready Traefik pod. Client IP stays via NLB + proxy protocol.
+      service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+      # Let either zonal NLB node reach targets in the other AZ so connections
+      # are not black-holed when a zone has no ready Traefik pod.
+      service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: 'true'
     spec:
       externalTrafficPolicy: Local
