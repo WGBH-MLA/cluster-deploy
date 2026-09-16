@@ -1,33 +1,4 @@
 metaflow:
-  metaflow-service:
-    ingress:
-      enabled: true
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
-      hosts:
-      - host: meta.dev.wgbh-mla.org
-        paths:
-        - path: /
-          pathType: ImplementationSpecific
-      tls:
-      - hosts:
-        - meta.dev.wgbh-mla.org
-        secretName: metaflow-service-tls
-  metaflow-ui:
-    ingress:
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
-      hosts:
-      - host: metaflow.dev.wgbh-mla.org
-      tls:
-      - hosts:
-        - metaflow.dev.wgbh-mla.org
-        secretName: metaflow-ui-tls
-    uiBackend:
-      metaflowServiceURL: https://meta.dev.wgbh-mla.org
-      env:
-      - name: METAFLOW_SERVICE
-        value: https://meta.dev.wgbh-mla.org
   postgresql:
     enabled: false
     
