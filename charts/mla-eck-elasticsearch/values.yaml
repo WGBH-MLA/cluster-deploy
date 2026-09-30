@@ -1,0 +1,26 @@
+eck-elasticsearch:
+  version: 9.5.4
+  nodeSets:
+  - name: default
+    count: 3
+    config:
+      node.store.allow_mmap: false
+      http.cors.allow-origin: /(^https:\/\/openvault.wgbh.org)|(^https:\/\/.*\.wgbh-mla.org)|(^https?:\/\/localhost(:[0-9]+)?)/
+      http.cors.enabled: true
+      http.cors.allow-credentials: true
+      http.cors.allow-methods: OPTIONS, HEAD, GET, POST, PUT, DELETE
+      http.cors.allow-headers: X-Requested-With, X-Auth-Token, Content-Type, Content-Length, Authorization, Access-Control-Allow-Headers, Accept, x-elastic-client-meta
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-production
+    hosts:
+    - host: elastic.dev.wgbh-mla.org
+      path: /
+    tls:
+      enabled: true
+      secretName: elasticsearch-tls
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: true
