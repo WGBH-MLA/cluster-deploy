@@ -7,7 +7,6 @@ spec:
   project: elastic
   source:
     repoURL: https://github.com/WGBH-MLA/cluster-deploy
-    targetRevision: 24-elasticsearch-helm-charts
     path: charts/mla-ingest-connector
   destination:
     server: https://kubernetes.default.svc
