@@ -1,0 +1,21 @@
+argo-cd:
+  global:
+    addPrometheusAnnotations: true
+    domain: cd.dev.wgbh-mla.org
+  dex:
+    enabled: false  
+  configs:
+    cm:
+      kustomize.buildOptions: --enable-helm
+    params:
+      server.insecure: true
+  server:
+    ingress:
+      enabled: true
+      tls: true
+    certificate:
+      enabled: true
+      issuer:
+        kind: ClusterIssuer
+        name: letsencrypt-production
+        group: cert-manager.io

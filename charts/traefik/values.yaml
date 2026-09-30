@@ -1,0 +1,84 @@
+traefik:
+  deployment:
+    podAnnotations:
+      prometheus.io/path: /metrics
+      prometheus.io/port: '9100'
+      prometheus.io/scrape: 'true'
+      prometheus.io/collectionInterval: 15s
+
+  experimental:
+    plugins:
+      captcha-protect:
+        moduleName: github.com/libops/captcha-protect
+        version: v1.14.0
+      simple-cache:
+        moduleName: github.com/ciaranj/cacheify
+        version: v1.0.0
+  ingressRoute:
+    dashboard:
+      enabled: true
+
+  log:
+    format: json
+
+  accessLog:
+    enabled: true
+    format: json
+    fields:
+      headers:
+        defaultmode: keep
+
+  metrics:
+    addInternals: true
+    prometheus:
+      addRoutersLabels: true
+      headerLabels:
+        ip: request_X-Real-Ip
+        useragent: request_User-Agent
+
+  tracing:
+    addInternals: true
+    serviceName: traefik
+    safeQueryParams:
+    - q
+    - f[access_types][]
+    - f[producing_organizations][]
+    - f[media_type][]
+    - f[generes][]
+    - f[topics][]
+    - f[asset_type][]
+    - f[contributing_organizations][]
+    - f[producing_organizations][]
+    - exact_or_range
+    - after_date
+    - before_date
+    otlp:
+      enabled: true
+      grpc:
+        enabled: true
+        endpoint: tempo.tempo:4317
+        insecure: true
+
+  ports:
+    web:
+      http:
+        redirections:
+          entryPoint:
+            permanent: true
+            scheme: https
+            to: websecure
+    websecure:
+      allowACMEByPass: true
+
+  providers:
+    kubernetesCRD:
+      allowExternalNameServices: true
+      enabled: true
+    kubernetesIngress:
+      allowExternalNameServices: true
+
+  service:
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
+    spec:
+      externalTrafficPolicy: Local

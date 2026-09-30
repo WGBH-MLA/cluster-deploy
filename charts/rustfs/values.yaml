@@ -1,0 +1,26 @@
+rustfs:
+  mode:
+    standalone:
+      enabled: true
+    distributed:
+      enabled: false
+  ingress:
+    className: traefik
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-production
+    hosts:
+      - host: s3.dev.wgbh-mla.org
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      enabled: true
+      existingSecret:
+        enabled: true
+        name: rustfs-ingress-tls
+  storageclass:
+    name: efs-sc
+  secret:
+    rustfs:
+      access_key: admin
+      secret_key: '{{ .Values.rustfs.secret.rustfs.secret_key | default (randAlphaNum 32) }}'

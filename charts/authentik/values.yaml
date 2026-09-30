@@ -1,0 +1,6 @@
+cluster:
+  cluster:
+    instances: 1
+    initdb:
+      database: authentik
+      owner: authentik

@@ -1,0 +1,14 @@
+apiVersion: v2
+name: groot
+version: 0.1.2
+description: A bootstrapped cluster deployment
+home: https://github.com/WGBH-MLA/cluster-deploy
+keywords:
+- kubernetes
+- bootstrap
+- argo-cd
+maintainers:
+- name: Harpo
+  email: ryan_harbert@wgbh.org
+sources:
+- https://github.com/WGBH-MLA/cluster-deploy

@@ -1,0 +1,17 @@
+apiVersion: v2
+name: chowda
+version: 0.2.0
+appVersion: v0.7.0
+description: Helm chart for Chowda
+dependencies:
+- name: app-template
+  version: 5.1.0
+  repository: https://bjw-s-labs.github.io/helm-charts
+keywords:
+- clams
+- metadata
+maintainers:
+- name: Harpo
+  email: ryan_harbert@wgbh.org
+sources:
+- https://github.com/WGBH-MLA/cluster-deploy

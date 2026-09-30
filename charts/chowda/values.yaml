@@ -1,0 +1,73 @@
+global:
+  host: dev.wgbh-mla.org
+app-template:
+  controllers:
+    chowda:
+      containers:
+        main: 
+          envFrom:
+          - configMapRef:
+              identifier: chowda
+          image:
+            repository: ghcr.io/wgbh-mla/chowda
+            tag: main
+          # probes:
+          #   liveness:
+          #     enabled: true
+          #     custom: true
+          #     spec:
+          #       periodSeconds: 60
+          #       httpGet:
+          #         path: /health
+          #         port: 3000
+          #   startup:
+          #     enabled: true
+          #     custom: true
+          #     spec:
+          #       initialDelaySeconds: 3
+          #       periodSeconds: 3
+          #       failureThreshold: 10
+          #       httpGet:
+          #         path: /health
+          #         port: 3000
+      defaultContainerOptionsStrategy: merge
+      defaultContainerOptions:
+        image:
+          pullPolicy: Always
+        resources:
+          limits:
+            cpu: '1'
+            memory: 1Gi
+          requests:
+            cpu: 50m
+            memory: 50Mi
+      # replicas: null
+      strategy: RollingUpdate
+      rollingUpdate:
+        unavailable: 0
+        surge: 3
+  configMaps:
+    chowda:
+      data:
+        PRODUCTION: 'true'
+  service:
+    chowda:
+      controller: chowda
+      ports:
+        http:
+          port: 80
+          targetPort: 8000
+  ingress:
+    chowda:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      hosts:
+      - host: '{{ .Release.Name }}.{{ .Values.global.host }}'
+        paths:
+        - path: /
+          service:
+            identifier: chowda
+      tls:
+      - secretName: '{{ .Release.Name }}-tls'
+        hosts:
+        - '{{ .Release.Name }}.{{ .Values.global.host }}'
