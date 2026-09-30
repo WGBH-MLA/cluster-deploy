@@ -1,5 +1,5 @@
 eck-elasticsearch:
-  version: 9.1.2
+  version: 9.5.4
   nodeSets:
   - name: default
     count: 3
