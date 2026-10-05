@@ -1,0 +1,91 @@
+global:
+  host: dev.wgbh-mla.org
+
+hyrax:
+  image:
+    repository: ghcr.io/wgbh-mla/ams
+    tag: cc78e9a7
+  fcrepo:
+    enabled: false
+  skipDbMigrateSeed: true
+  loadSolrConfigSet: false
+  postgresql:
+    enabled: false
+  externalPostgresql:
+    host: ams-demo-db-cluster-rw
+    username: app
+    database: ams
+    # password: 
+  worker:
+    enabled: true
+    image:
+      repository: ghcr.io/wgbh-mla/ams/worker
+      tag: cc78e9a7
+  # extraEnvFrom:
+  #   - configMapRef:
+  #       name: ams-demo-hyrax
+  #   - secretRef:
+  #       name: existingSecret
+  brandingVolume:
+    existingClaim: ams-demo-branding
+  derivativesVolume:
+    existingClaim: ams-demo-derivatives
+  uploadsVolume:
+    existingClaim: ams-demo-uploads  
+  solr:
+    collectionReplicas: 1
+  startupProbe:
+    enabled: true
+    initialDelaySeconds: 30
+    failureThreshold: 30
+
+app-template:
+  ingress:
+    ams:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      hosts:
+        - host: "{{ .Release.Name }}.{{ .Values.global.host }}"
+          paths:
+            - path: /
+              service:
+                name: ams-demo-hyrax
+                port: 80
+      tls:
+        - secretName: "{{ .Release.Name }}-tls"
+          hosts:
+            - "{{ .Release.Name }}.{{ .Values.global.host }}"
+  persistence:
+    branding:
+      type: persistentVolumeClaim
+      accessMode: ReadWriteMany
+      size: 1Gi
+    derivatives:
+      type: persistentVolumeClaim
+      accessMode: ReadWriteMany
+      size: 1Gi
+    uploads:
+      type: persistentVolumeClaim
+      accessMode: ReadWriteMany
+      size: 1Gi
+  rawResources:
+    db-cluster:
+      manifest:
+        apiVersion: postgresql.cnpg.io/v1
+        kind: Cluster
+        spec:
+          name: ams-db-cluster
+          instances: 1
+          imageName: ghcr.io/cloudnative-pg/postgresql:18
+          storage:
+            size: 10Gi
+            storageClass: ebs-gp3-4
+    database:
+      manifest:
+        apiVersion: postgresql.cnpg.io/v1
+        kind: Database
+        spec:
+          name: ams
+          owner: app
+          cluster:
+            name: ams-db-cluster
