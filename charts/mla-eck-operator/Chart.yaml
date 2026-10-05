@@ -1,0 +1,11 @@
+apiVersion: v2
+name: mla-eck-operator
+description: Wrapper chart for Elastic ECK Operator
+type: application
+version: 0.3.0
+appVersion: 3.5.0
+
+dependencies:
+- name: eck-operator
+  version: 3.5.0
+  repository: https://helm.elastic.co

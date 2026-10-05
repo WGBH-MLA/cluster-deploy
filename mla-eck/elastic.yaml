@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mla-eck-elasticsearch
+  namespace: argo-cd
+spec:
+  project: elastic
+  source:
+    repoURL: https://github.com/WGBH-MLA/cluster-deploy
+    path: charts/mla-eck-elasticsearch
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: es
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
