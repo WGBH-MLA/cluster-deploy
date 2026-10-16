@@ -3,7 +3,7 @@ version: 2
 updates:
 # GitHub Actions
 - package-ecosystem: github-actions
-  directory: .github/workflows
+  directory: /
   schedule:
     interval: weekly
     day: wednesday
@@ -20,7 +20,7 @@ updates:
 # Helm charts
 - package-ecosystem: helm
   directories:
-  - charts/*
+  - charts/**/*
   schedule:
     interval: weekly
     day: wednesday
@@ -36,4 +36,4 @@ updates:
   groups:
     mla:
       patterns:
-      - 'charts/mla-*/**'
+      - charts/mla-*/*
