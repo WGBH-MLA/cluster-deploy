@@ -6,4 +6,4 @@ description: Event-driven automation for Kubernetes with Argo Events
 dependencies:
 - name: argo-events
   repository: https://argoproj.github.io/argo-helm
-  version: 2.4.21
+  version: 2.4.27
