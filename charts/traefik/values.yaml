@@ -10,7 +10,7 @@ traefik:
     plugins:
       captcha-protect:
         moduleName: github.com/libops/captcha-protect
-        version: v1.14.0
+        version: v1.15.1
       simple-cache:
         moduleName: github.com/ciaranj/cacheify
         version: v1.0.0
@@ -35,6 +35,7 @@ traefik:
       headerLabels:
         ip: request_X-Real-Ip
         useragent: request_User-Agent
+        human-id: request_X-Aapb-Human-Id
 
   tracing:
     addInternals: true
