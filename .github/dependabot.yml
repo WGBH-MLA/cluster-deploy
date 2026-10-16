@@ -11,13 +11,15 @@ updates:
     timezone: US/Eastern
   commit-message:
     prefix: ⬆
+  cooldown:
+    default-days: 1
   labels:
   - maintenance 🔧
   - CI 🦾
 
 # Helm charts
 - package-ecosystem: helm
-  directories: 
+  directories:
   - charts/*
   schedule:
     interval: weekly
@@ -26,5 +28,12 @@ updates:
     timezone: US/Eastern
   commit-message:
     prefix: ⬆
+  cooldown:
+    default-days: 3
+    semver-major-days: 7
   labels:
   - maintenance 🔧
+  groups:
+    mla:
+      patterns:
+      - 'charts/mla-*/**'
