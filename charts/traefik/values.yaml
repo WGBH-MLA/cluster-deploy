@@ -83,3 +83,8 @@ traefik:
       service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
     spec:
       externalTrafficPolicy: Local
+
+  volumes:
+  - name: turnstile-challenge-template
+    type: configMap
+    mountPath: /templates
