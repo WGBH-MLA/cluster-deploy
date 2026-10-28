@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: turnstile-challenge-template
 data:
-  challenge.tmpl.html: |
+  challenge.tmpl.html: |-
     <html>
 
     <head>
