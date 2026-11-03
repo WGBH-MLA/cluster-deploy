@@ -8,7 +8,7 @@ dependencies:
   version: 14.3.1
 - name: prometheus
   repository: oci://ghcr.io/prometheus-community/charts
-  version: 28.13.0
+  version: 29.37.0
 - name: loki
   repository: oci://ghcr.io/grafana-community/helm-charts
   version: 6.57.0
