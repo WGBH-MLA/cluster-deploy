@@ -1,0 +1,17 @@
+# Dev overrides, layered over values.yaml. Bucket and role come from ../../loki (Terraform).
+loki:
+  serviceAccount:
+    annotations:
+      eks.amazonaws.com/role-arn: arn:aws:iam::127946490116:role/dev-loki-s3
+  loki:
+    storage:
+      bucketNames:
+        chunks: mla-dev-loki
+        ruler: mla-dev-loki
+        admin: mla-dev-loki
+      s3:
+        # Drop the MinIO URL and keys from values.yaml; credentials come from IRSA.
+        s3: null
+        region: us-east-1
+        insecure: false
+        s3ForcePathStyle: false
