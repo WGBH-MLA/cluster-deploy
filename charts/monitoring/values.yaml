@@ -13,7 +13,14 @@ grafana:
       - grafana.dev.wgbh-mla.org
   persistence:
     enabled: true
-
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+      - name: Loki
+        type: loki
+        access: proxy
+        url: http://monitoring-loki.monitoring.svc.cluster.local:3100
 prometheus:
   server:
     global:
