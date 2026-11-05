@@ -32,6 +32,9 @@ prometheus:
   alertmanager:
     enabled: false
 
+alloy:
+  enabled: false
+
 loki:
   deploymentMode: SingleBinary
   singleBinary:
