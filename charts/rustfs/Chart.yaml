@@ -1,11 +1,11 @@
 apiVersion: v2
 name: rustfs
-version: 0.0.5
-appVersion: 1.0.0-rc.1
+version: 0.0.6
+appVersion: 1.0.0-rc.3
 description: Helm chart for RustFS
 dependencies:
 - name: rustfs
-  version: 1.0.0-rc.1
+  version: 1.0.0-rc.3
   repository: https://charts.rustfs.com
 keywords:
 - s3

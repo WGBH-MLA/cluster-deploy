@@ -4,18 +4,18 @@ traefik:
     web:
       forwardedHeaders:
         trustedIPs:
-          - 10.0.0.0/19
-          - 10.0.32.0/24
+        - 10.0.0.0/19
+        - 10.0.32.0/24
       proxyProtocol:
         trustedIPs:
-          - 10.0.0.0/19
-          - 10.0.32.0/24
+        - 10.0.0.0/19
+        - 10.0.32.0/24
     websecure:
       forwardedHeaders:
         trustedIPs:
-          - 10.0.0.0/19
-          - 10.0.32.0/24
+        - 10.0.0.0/19
+        - 10.0.32.0/24
       proxyProtocol:
         trustedIPs:
-          - 10.0.0.0/19
-          - 10.0.32.0/24
+        - 10.0.0.0/19
+        - 10.0.32.0/24

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mla-ingest-connector.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "mla-ingest-connector.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "mla-ingest-connector.name" . }}
+    spec:
+      containers:
+        - name: elastic-connector
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          args: ["/app/bin/elastic-ingest", "-c", "/config/config.yml"]
+          env:
+          {{- range $key, $value := .Values.env }}
+            - name: {{ $key }}
+              value: "{{ $value }}"
+          {{- end }}
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config
+              readOnly: true
+      volumes:
+        - name: config-volume
+          secret:
+            secretName: mla-ingest-connector-config
