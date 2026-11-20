@@ -29,8 +29,10 @@ authentik:
     # authentik application slug. The OpenID issuer is https://<authentik>/application/o/<slug>/
     slug: openvault
     clientId: openvault
-    # Only members of this authentik group may sign in
+    # Members of this authentik group may sign in and are made Wagtail "Editors"
     group: ov-editors
+    # Members of this group may sign in and are made Wagtail superusers
+    adminGroup: ov-admins
     launchUrl: https://ov.dev.wgbh-mla.org/admin/
     # Allowed OAuth redirect URIs. matching_mode is "strict" (exact match) or "regex".
     redirectUris:
@@ -80,12 +82,17 @@ authentik:
             identifiers:
               name: Default - Provider invalidation flow
 
-        # Only members of this group may sign in to Open Vault. This blueprint creates the
-        # group but never touches its membership: add editors in the authentik admin UI.
+        # Only members of these groups may sign in to Open Vault, and the backend grants Wagtail
+        # access from them: ov-editors become Editors, ov-admins become superusers. This blueprint
+        # creates the groups but never touches their membership: manage it in the authentik admin UI.
         - model: authentik_core.group
           id: ov-editors
           identifiers:
             name: {{ .Values.openvault.group | quote }}
+        - model: authentik_core.group
+          id: ov-admins
+          identifiers:
+            name: {{ .Values.openvault.adminGroup | quote }}
 
         - model: authentik_providers_oauth2.oauth2provider
           id: openvault-provider
@@ -123,6 +130,16 @@ authentik:
             target: !KeyOf openvault-application
             group: !KeyOf ov-editors
             order: 0
+          attrs:
+            negate: false
+            enabled: true
+            timeout: 30
+
+        - model: authentik_policies.policybinding
+          identifiers:
+            target: !KeyOf openvault-application
+            group: !KeyOf ov-admins
+            order: 1
           attrs:
             negate: false
             enabled: true
