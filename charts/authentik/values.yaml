@@ -102,6 +102,10 @@ authentik:
             authorization_flow: !Find [authentik_flows.flow, [slug, default-provider-authorization-implicit-consent]]
             invalidation_flow: !Find [authentik_flows.flow, [slug, default-provider-invalidation-flow]]
             client_type: confidential
+            # Authentik 2026.8 creates providers with no grant types, which rejects every
+            # authorize request as "invalid_request". The backend only uses the code flow.
+            grant_types:
+            - authorization_code
             client_id: {{ .Values.openvault.clientId | quote }}
             client_secret: !Env OPENVAULT_OIDC_CLIENT_SECRET
             # Issuer: https://<authentik>/application/o/<slug>/
