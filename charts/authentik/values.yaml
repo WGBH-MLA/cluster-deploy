@@ -31,6 +31,8 @@ authentik:
     clientId: openvault
     # Members of this authentik group may sign in and are made Wagtail "Editors"
     group: ov-editors
+    # Members of this group may sign in and are made Wagtail "Moderators", who can also publish
+    moderatorGroup: ov-moderators
     # Members of this group may sign in and are made Wagtail superusers
     adminGroup: ov-admins
     launchUrl: https://ov.dev.wgbh-mla.org/admin/
@@ -83,12 +85,17 @@ authentik:
               name: Default - Provider invalidation flow
 
         # Only members of these groups may sign in to Open Vault, and the backend grants Wagtail
-        # access from them: ov-editors become Editors, ov-admins become superusers. This blueprint
-        # creates the groups but never touches their membership: manage it in the authentik admin UI.
+        # access from them: ov-editors become Editors, ov-moderators become Moderators and
+        # ov-admins become superusers. This blueprint creates the groups but never touches their
+        # membership: manage it in the authentik admin UI.
         - model: authentik_core.group
           id: ov-editors
           identifiers:
             name: {{ .Values.openvault.group | quote }}
+        - model: authentik_core.group
+          id: ov-moderators
+          identifiers:
+            name: {{ .Values.openvault.moderatorGroup | quote }}
         - model: authentik_core.group
           id: ov-admins
           identifiers:
@@ -144,6 +151,16 @@ authentik:
             target: !KeyOf openvault-application
             group: !KeyOf ov-admins
             order: 1
+          attrs:
+            negate: false
+            enabled: true
+            timeout: 30
+
+        - model: authentik_policies.policybinding
+          identifiers:
+            target: !KeyOf openvault-application
+            group: !KeyOf ov-moderators
+            order: 2
           attrs:
             negate: false
             enabled: true
