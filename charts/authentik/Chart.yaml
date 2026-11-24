@@ -1,6 +1,6 @@
 apiVersion: v2
 name: authentik
-version: 0.3.0
+version: 0.4.3
 appVersion: 2026.8.3
 description: A Helm chart for managing Authentik identity provider
 dependencies:

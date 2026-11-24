@@ -3,3 +3,186 @@ cluster:
     instances: 1
     initdb:
       database: authentik
+
+authentik:
+  blueprints:
+    # Mounted into the worker. The ConfigMap is created by additionalObjects below, so
+    # remove this entry together with the ConfigMap.
+    configMaps:
+    - openvault-blueprint
+  global:
+    # The secret is optional so that a missing client secret fails only the Open Vault
+    # blueprint, never the identity provider itself.
+    envFrom:
+    - secretRef:
+        name: openvault-oidc
+        optional: true
+
+  # Open Vault OpenID Connect settings, read by the objects in additionalObjects below.
+  # Defaults are for the dev instance. Override redirectUris, launchUrl and clientSecret.key
+  # per environment, e.g. prod (auth.wgbh-mla.org):
+  #   redirectUris:
+  #   - matching_mode: strict
+  #     url: https://openvault.wgbh.org/accounts/oidc/authentik/login/callback/
+  #   launchUrl: https://openvault.wgbh.org/admin/
+  openvault:
+    # authentik application slug. The OpenID issuer is https://<authentik>/application/o/<slug>/
+    slug: openvault
+    clientId: openvault
+    # Members of this authentik group may sign in and are made Wagtail "Editors"
+    group: ov-editors
+    # Members of this group may sign in and are made Wagtail "Moderators", who can also publish
+    moderatorGroup: ov-moderators
+    # Members of this group may sign in and are made Wagtail superusers
+    adminGroup: ov-admins
+    launchUrl: https://ov.dev.wgbh-mla.org/admin/
+    # Allowed OAuth redirect URIs. matching_mode is "strict" (exact match) or "regex".
+    redirectUris:
+    - matching_mode: strict
+      url: https://ov.dev.wgbh-mla.org/accounts/oidc/authentik/login/callback/
+    # Per-PR preview deployments: ov-wag-pr-<n> and ov-frontend-pr-<n>
+    - matching_mode: regex
+      url: ^https://ov-(wag|frontend)-pr-[0-9]+\.dev\.wgbh-mla\.org/accounts/oidc/authentik/login/callback/$
+    # Local development against the dev instance
+    - matching_mode: strict
+      url: http://localhost:8000/accounts/oidc/authentik/login/callback/
+    # AWS Secrets Manager entry holding the client secret. This is the same secret the
+    # Open Vault backend reads as OIDC_CLIENT_SECRET.
+    clientSecret:
+      key: dev/ov/backend
+      property: OIDC_CLIENT_SECRET
+
+  # Rendered by the chart with tpl, so the expressions inside are filled in from the
+  # openvault values above.
+  additionalObjects:
+  - apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: openvault-blueprint
+      namespace: '{{ .Release.Namespace }}'
+    data:
+      openvault.yaml: |-
+        # yaml-language-server: $schema=https://goauthentik.io/blueprints/schema.json
+        # Open Vault (Wagtail admin) sign-in through OpenID Connect.
+        #
+        # The client secret is not stored here: it is read from the OPENVAULT_OIDC_CLIENT_SECRET
+        # environment variable, which comes from the openvault-oidc Secret.
+        version: 1
+        metadata:
+          name: Open Vault
+          labels:
+            blueprints.goauthentik.io/description: Open Vault (Wagtail) OpenID Connect application
+        entries:
+        # Blueprints are discovered in no particular order. Make sure the default flows
+        # referenced below exist before this blueprint creates the provider.
+        - model: authentik_blueprints.metaapplyblueprint
+          attrs:
+            identifiers:
+              name: Default - Provider authorization flow (implicit consent)
+        - model: authentik_blueprints.metaapplyblueprint
+          attrs:
+            identifiers:
+              name: Default - Provider invalidation flow
+
+        # Only members of these groups may sign in to Open Vault, and the backend grants Wagtail
+        # access from them: ov-editors become Editors, ov-moderators become Moderators and
+        # ov-admins become superusers. This blueprint creates the groups but never touches their
+        # membership: manage it in the authentik admin UI.
+        - model: authentik_core.group
+          id: ov-editors
+          identifiers:
+            name: {{ .Values.openvault.group | quote }}
+        - model: authentik_core.group
+          id: ov-moderators
+          identifiers:
+            name: {{ .Values.openvault.moderatorGroup | quote }}
+        - model: authentik_core.group
+          id: ov-admins
+          identifiers:
+            name: {{ .Values.openvault.adminGroup | quote }}
+
+        - model: authentik_providers_oauth2.oauth2provider
+          id: openvault-provider
+          identifiers:
+            name: Open Vault
+          attrs:
+            authorization_flow: !Find [authentik_flows.flow, [slug, default-provider-authorization-implicit-consent]]
+            invalidation_flow: !Find [authentik_flows.flow, [slug, default-provider-invalidation-flow]]
+            client_type: confidential
+            # Authentik 2026.8 creates providers with no grant types, which rejects every
+            # authorize request as "invalid_request". The backend only uses the code flow.
+            grant_types:
+            - authorization_code
+            client_id: {{ .Values.openvault.clientId | quote }}
+            client_secret: !Env OPENVAULT_OIDC_CLIENT_SECRET
+            # Issuer: https://<authentik>/application/o/<slug>/
+            issuer_mode: per_provider
+            signing_key: !Find [authentik_crypto.certificatekeypair, [name, authentik Self-signed Certificate]]
+            # django-allauth (provider_id "authentik") calls back to
+            # /accounts/oidc/authentik/login/callback/ on the Open Vault host.
+            redirect_uris: {{ .Values.openvault.redirectUris | toJson }}
+            property_mappings:
+            - !Find [authentik_providers_oauth2.scopemapping, [managed, goauthentik.io/providers/oauth2/scope-openid]]
+            - !Find [authentik_providers_oauth2.scopemapping, [managed, goauthentik.io/providers/oauth2/scope-email]]
+            - !Find [authentik_providers_oauth2.scopemapping, [managed, goauthentik.io/providers/oauth2/scope-profile]]
+
+        - model: authentik_core.application
+          id: openvault-application
+          identifiers:
+            slug: {{ .Values.openvault.slug | quote }}
+          attrs:
+            name: Open Vault
+            provider: !KeyOf openvault-provider
+            meta_launch_url: {{ .Values.openvault.launchUrl | quote }}
+            meta_publisher: GBH Archives
+
+        - model: authentik_policies.policybinding
+          identifiers:
+            target: !KeyOf openvault-application
+            group: !KeyOf ov-editors
+            order: 0
+          attrs:
+            negate: false
+            enabled: true
+            timeout: 30
+
+        - model: authentik_policies.policybinding
+          identifiers:
+            target: !KeyOf openvault-application
+            group: !KeyOf ov-admins
+            order: 1
+          attrs:
+            negate: false
+            enabled: true
+            timeout: 30
+
+        - model: authentik_policies.policybinding
+          identifiers:
+            target: !KeyOf openvault-application
+            group: !KeyOf ov-moderators
+            order: 2
+          attrs:
+            negate: false
+            enabled: true
+            timeout: 30
+
+  # OAuth client secret shared with the Open Vault backend (OIDC_CLIENT_SECRET), so that
+  # both sides read one value. Exposed to authentik through global.envFrom above.
+  - apiVersion: external-secrets.io/v1
+    kind: ExternalSecret
+    metadata:
+      name: openvault-oidc
+      namespace: '{{ .Release.Namespace }}'
+    spec:
+      refreshInterval: 1h0m0s
+      secretStoreRef:
+        name: aws-secrets
+        kind: ClusterSecretStore
+      target:
+        name: openvault-oidc
+        creationPolicy: Owner
+      data:
+      - secretKey: OPENVAULT_OIDC_CLIENT_SECRET
+        remoteRef:
+          key: '{{ .Values.openvault.clientSecret.key }}'
+          property: '{{ .Values.openvault.clientSecret.property }}'

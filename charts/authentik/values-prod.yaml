@@ -1,0 +1,11 @@
+# Production overrides
+authentik:
+  openvault:
+    launchUrl: https://openvault.wgbh.org/admin/
+    # Replaces the dev list: no PR previews or localhost in production
+    redirectUris:
+    - matching_mode: strict
+      url: https://openvault.wgbh.org/accounts/oidc/authentik/login/callback/
+    clientSecret:
+      key: prod/ov/backend
+      property: OIDC_CLIENT_SECRET
